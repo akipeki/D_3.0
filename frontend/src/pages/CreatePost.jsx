@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { preview } from '../assets';
-import { getRandomPrompt } from '..utils'
-import { FormField, Loader } from '..components';
+import { getRandomPrompt } from '../utils'
+import { FormField, Loader } from '../components';
 
 const CreatePost = () => {
 const navigate = useNavigate();
@@ -16,24 +15,44 @@ const [form, setForm] = useState({
 const [generatingImg, setGeneratingImg] = useState(false);
 const [loading, setLoading] = useState(false);
 
+const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value})
 
-const generateImage = () => {
+  const handleSurpriseMe = () => {
+    const randomPrompt = getRandomPrompt(form.prompt)
+    setForm({ ...form, prompt: randomPrompt });
+  };
 
+const generateImage = async() => {
+if (form.prompt) {
+  try {
+    setGeneratingImg(true);
+    const response = await fetch ('http://localhost:8080/api/v1/dalle', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+       prompt: form.prompt,
+       }),
+    })
+    const data = await response.json();
+
+    setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}`})
+
+  } catch (error) {    
+    alert(error);
+    } finally {
+      setGeneratingImg(false);
+    }
+  } else {
+    alert ('Please enter a prompt');
+  }
 }
 
 const handleSubmit = () => {
 
-}
 
-const handleChange = (e) => {
-setForm({ ...form, [e.target.name]: e.target.value})
-setForm({ ...form, prompt: randomPrompt })
 }
-
-const handleSurpriseMe = () => {
-  const randomPrompt = getRandomPrompt(form.prompt)
-}
-
   return (
     <section className='max-w-7xl mx-auto'>
        <div>
@@ -73,7 +92,7 @@ focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center item
   />
  ) : (
   <img
-  src='{preview}'
+  src={preview}
   alt='preview'
   className='w-9/12 h-9/12 object-contain opacity-40'
   />
