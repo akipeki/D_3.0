@@ -26,11 +26,12 @@ const handleSubmit = () => {
 }
 
 const handleChange = (e) => {
-
+setForm({ ...form, [e.target.name]: e.target.value})
+setForm({ ...form, prompt: randomPrompt })
 }
 
 const handleSurpriseMe = () => {
-
+  const randomPrompt = getRandomPrompt(form.prompt)
 }
 
   return (
@@ -109,7 +110,7 @@ focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center item
     font-medium rounded-md text-sm w-full sm:w-auto
     px-5 py-2.5 text-center'
     >
-      {laoding ? 'Sharing...' : 'Share with the Community'}
+      {loading ? 'Sharing...' : 'Share with the Community'}
     </button>
     
     </div>
