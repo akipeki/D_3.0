@@ -14,6 +14,13 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 
+// Add the logging middleware here
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.originalUrl}`);
+    console.log('Body:', req.body);
+    next();
+});
+
 app.use('/api/v1/post', postRoutes);
 app.use('/api/v1/dalle', dalleRoutes);
 
@@ -22,19 +29,13 @@ app.get('/', async (req, res) => {
 });
 
 const startServer = async () => {
-
-try {
-connectDB(process.env.MONGO_URL);
-app.listen(8080, () => 
-  console.log('Server running on port http://localhost:8080'));
-} catch (error) {
-console.log(error);
-  }
+    try {
+        connectDB(process.env.MONGO_URL);
+        app.listen(8080, () => 
+            console.log('Server running on port http://localhost:8080'));
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-
 startServer();
-
-   /*  app.listen(port, () => {
-        console.log(`Server running on http://localhost:${port}`);
-      }); */ 
