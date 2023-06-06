@@ -37,8 +37,8 @@ if (form.prompt) {
     })
     const data = await response.json();
 
-    setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}`})
-
+    setForm({ ...form, photo: `data:image/jpeg;base64,
+    ${data.photo}`})
   } catch (error) {    
     alert(error);
     } finally {
@@ -49,8 +49,29 @@ if (form.prompt) {
   }
 }
 
-const handleSubmit = () => {
+const handleSubmit = async(e) => {
+e.preventDefault();
 
+if(form.prompt && form.photo) {
+  setLoading(true);
+try {
+  const response = await fetch('http://localhost:8080/api/v1/post', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }, body: JSON.stringify(form)
+  })
+  await response.json();
+  navigate('/')
+} catch (err) {
+  alert(err)
+} finally {
+  setLoading(false);
+} 
+
+} else {
+  alert('Please enter a prompt and generate an image')
+}
 
 }
   return (
@@ -74,7 +95,7 @@ const handleSubmit = () => {
         <FormField
       labelName='Prompt'
       type='text'
-      name='Prompt'
+      name='prompt'
       placeholder='A comic book cover of a superhero wearing headphones'
       value={form.prompt}
       handleChange={handleChange}
@@ -116,7 +137,7 @@ focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center item
       rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
 
       >
-        {generateImg ? 'Generating...' : 'Generate'}
+        {generatingImg ? 'Generating...' : 'Generate'}
 
       </button>
     </div>
