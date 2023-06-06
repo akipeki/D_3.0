@@ -89,24 +89,22 @@ const handleSearchChange= (e) => {
       <>
       {searchText && (
         <h2 className='font-medium text-[#665e75] text-xl mb-3'>
-          Showing result for <span className='text-[#222328]'>{searchText}</span>
+          Showing result for <span className='text-[#222328] text-[32px]'>{searchText}</span>
         </h2>
       )}
-      <div className='grid lg:grid-cols-4 sm:grid.cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
-        {searchText ? (
-          <RenderCards
-          data={[searchedResults]}
-          title='No search result found'
-          />
-        ): (
-          <RenderCards
-          data={allPosts}
-          title='No posts found'
+      <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
+      {searchText ? (
+  <RenderCards
+    data={searchedResults} 
+    title='No search result found'
+  />
+): (
+  <RenderCards
+    data={allPosts} 
+    title='No posts found'
+  />
+)}
 
-          />
-        )
-        
-        }
         </div>
         </>
      )}
