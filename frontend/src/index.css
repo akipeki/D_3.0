@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 * {
-font-family: 'Sora', sans-serif;
+font-family: 'Work Sans', sans-serif;
 }
 @media screen and (min-width: 480px) {
     .card:nth-child(7n + 1) {
