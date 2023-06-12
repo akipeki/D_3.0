@@ -12,48 +12,88 @@ const CreatePost = () => {
     name: '',
     prompt: '',
     photo: '',
+    gender: '',
+    age: '',
+    country: '',
+    personDescription: '',
   });
 
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [generatedText, setGeneratedText] = useState("");
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSurpriseMe = () => {
+  const handleSurpriseMe = async () => {
     const randomPrompt = getRandomPrompt(form.prompt);
     setForm({ ...form, prompt: randomPrompt });
+    await generateMessage(randomPrompt);
   };
 
-  const generateImage = async () => {
-    if (form.prompt) {
+  const generateMessage = async (prompt) => {
+    if (prompt) {
       try {
-        setGeneratingImg(true);
-        const response = await fetch('https://dille.onrender.com/api/v1/dalle', {
+        const response = await fetch('https://dille.onrender.com/api/v1/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: form.prompt,
+            prompt: `You are a talented author with skills to touch people with short texts.
+             Create a touching apology using min 100 tokens/max 200 tokens. Keep the language and vocabulary simple,
+              honest, and straight. Start your story with a straight apology: Something like "I'm sorry", "I want to apologize to you",
+               or something similar. Use this text as your reference for the touching text you create: ${prompt}`,
           }),
         });
 
         const data = await response.json();
+        setForm({ ...form, prompt: data });
+        setGeneratedText(data);
+      } catch (err) {
+        alert(err);
+      }
+    } else {
+      alert('Please provide a story to apologize');
+    }
+  };
+
+
+
+  const generateImage = async () => {
+    if (form.prompt && form.gender && form.age) {
+      try {
+        setGeneratingImg(true);
+        const response = await fetch('https://dille.onrender.com/api/v1/dalle', {
+          method: 'POST',
+          body: JSON.stringify({
+            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. The mood of the photo is sad and melancholic. The person in the photo looks like he will burst into tears in any moment. Someone had described that person like this: ${form.personDescription}. Saturation: 0. Kodak Tri-x grains.`,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await response.json();
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+
+        // Here we also generate the message after the image is generated.
+        await generateMessage(form.prompt);
+
       } catch (err) {
         alert(err);
       } finally {
         setGeneratingImg(false);
       }
     } else {
-      alert('Please provide proper prompt');
+      alert('Please provide proper details');
     }
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.prompt && form.photo) {
+    if (form.prompt && form.photo && form.gender && form.age && form.country) {
       setLoading(true);
       try {
         const response = await fetch('https://dille.onrender.com/api/v1/post', {
@@ -77,12 +117,38 @@ const CreatePost = () => {
     }
   };
 
+  const ageOptions = [
+    "1-3 years",
+    "5-8 years",
+    "9-12 years",
+    "13-15 years",
+    "16-18 years",
+    "19-22 years",
+    "23–28 years",
+    "29–34 years",
+    "35–40 years",
+    "40–50 years",
+    "50–60 years",
+    "70–80 years",
+    "80–90 years",
+    "90–100 years",
+    "100+ years"
+  ];
+
+  const genderOptions = ['girl', 'boy', 'man', 'woman', 'child', 'adult'];
+
   return (
     <section className='max-w-7xl mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>Share your story</h1>
-        <p className='mt-2 text-[#666e75] text-[14px] max-w-[500px]'>Time to say I'm Sorry. With a little help of AI we
-         can share your story anonymously with the community. Trust us, this will make you feel better.</p>
+        <p className='mt-2 text-[#666e75] text-[14px] max-w-[500px]'>Time to say I'm Sorry. In case you can no longer apologize to the person you have hurt directly, you can do it anonymously within our community.
+          <br /><br />
+          Please fill out the provided forms. With a little help from AI, we can share your apology anonymously with others.
+          To protect your identity, we kindly ask that you do not reveal your full name.
+          Additionally, we will create an anonymous photo to accompany your heartfelt apology.
+          <br /><br />
+          Let it all out. ❤️ Trust us, this will make you feel better. ⭐️
+        </p>
       </div>
 
       <form className='mt-16 max-w-3xl' onSubmit={handleSubmit}>
@@ -91,24 +157,68 @@ const CreatePost = () => {
             labelName='How would you like to be named here?'
             type='text'
             name='name'
-            placeholder='Ex., John'
+            placeholder='Ex., Alexander'
             value={form.name}
             handleChange={handleChange}
           />
 
           <FormField
-            labelName='Prompt'
+            labelName="I want to apologize that..."
             type='text'
             name='prompt'
-            placeholder='An Impressionist oil painting of sunflowers in a purple vase…'
+            placeholder='Ex., Not being there when you needed a friend the most'
             value={form.prompt}
             handleChange={handleChange}
             isSurpriseMe
             handleSurpriseMe={handleSurpriseMe}
           />
 
+          <div className="flex justify-between gap-4">
+            <FormField
+              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
+              labelName="I want to apology a"
+              type="select"
+              name="gender"
+              placeholder="Select Gender"
+              value={form.gender}
+              handleChange={handleChange}
+              options={genderOptions}
+            />
+
+
+            <FormField
+              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
+              labelName="That person was"
+              type='select'
+              name='age'
+              placeholder='Select Age'
+              value={form.age}
+              handleChange={handleChange}
+              options={ageOptions}
+            />
+
+          </div>
+
+          <FormField
+            labelName='How would you describe the person you want to apologize'
+            type='text'
+            name='personDescription'
+            placeholder='Ex., Cute and kind. Friendly eyes, curly hair. Always helping for others.'
+            value={form.personDescription}
+            handleChange={handleChange}
+          />
+
+          <FormField
+            labelName='City and country where did this happen?'
+            type='text'
+            name='country'
+            placeholder='Ex., Helsinki, Finland'
+            value={form.country}
+            handleChange={handleChange}
+          />
+
           <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
-            { form.photo ? (
+            {form.photo ? (
               <img
                 src={form.photo}
                 alt={form.prompt}
@@ -130,7 +240,10 @@ const CreatePost = () => {
           </div>
         </div>
 
-        <div className='mt-5 flex gap-5'>
+        <div className='mt-5'>
+          <p className='mt-2 text-[#666e75] text-[14px]'>
+            {generatedText}
+          </p>
           <button
             type='button'
             onClick={generateImage}
@@ -150,7 +263,7 @@ const CreatePost = () => {
           </button>
         </div>
       </form>
-    </section>
+    </section >
   );
 };
 
