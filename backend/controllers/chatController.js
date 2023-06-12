@@ -30,10 +30,11 @@ export const chatWithGpt3 = async (req, res) => {
     // Parse the response data as JSON
     const data = await response.json();
 
-    // Send back the generated text as the response
+    // Send back the generated text as the response.
     res.send(data.choices[0].text);
   } catch (error) {
     // If anything goes wrong, log the error to the console
     console.error(error);
   }
 };
+
