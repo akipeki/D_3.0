@@ -1,38 +1,31 @@
 import express from 'express';
-import fetch from 'node-fetch';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
+import { Configuration, OpenAIApi } from 'openai';
 
 dotenv.config();
+
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
 
 const router = express.Router();
 
 router.route('/').post(async (req, res) => {
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-    if (!OPENAI_API_KEY) {
-        throw new Error("Missing env var from OpenAI");
-    }
-
-    const options = {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${OPENAI_API_KEY}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            prompt: req.body.prompt,
-            max_tokens: 200,
-            temperature: 0.7
-        })
-    };
-
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', options);
-        const data = await response.json();
-        res.send(data.choices[0].text);
+        const { prompt } = req.body;
+        const aiResponse = await openai.chatModels.createCompletion({
+            model: "gpt-3.5-turbo",
+            prompt: prompt,
+            max_tokens: 200,
+            temperature: 0.7,
+        });
+
+        res.status(200).send(aiResponse.data.choices[0].text);
     } catch (error) {
         console.error(error);
+        res.status(500).send(error?.message);
     }
 });
 
