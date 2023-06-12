@@ -5,3 +5,4 @@ import { chatWithGpt3 } from '../controllers/chatController.js';
 router.route('/').post(chatWithGpt3);
 
 export default router;
+//this file linked to my server file
