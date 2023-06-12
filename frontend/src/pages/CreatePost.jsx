@@ -39,25 +39,25 @@ const CreatePost = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: `You are a talented author with skills to touch people with short texts.
-             Create a touching apology using min 100 tokens/max 200 tokens. Keep the language and vocabulary simple,
-              honest, and straight. Start your story with a straight apology: Something like "I'm sorry", "I want to apologize to you",
-               or something similar. Use this text as your reference for the touching text you create: ${prompt}`,
+            prompt: `You are a talented author with skills to touch people with short texts... ${prompt}`,
           }),
         });
+
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.message || `An error has occurred while generating message: ${response.status}`);
+        }
 
         const data = await response.json();
         setForm({ ...form, prompt: data });
         setGeneratedText(data);
       } catch (err) {
-        alert(err);
+        alert(`Fetch error: ${err.message}`);
       }
     } else {
       alert('Please provide a story to apologize');
     }
   };
-
-
 
   const generateImage = async () => {
     if (form.prompt && form.gender && form.age) {
@@ -66,21 +66,25 @@ const CreatePost = () => {
         const response = await fetch('https://dille.onrender.com/api/v1/dalle', {
           method: 'POST',
           body: JSON.stringify({
-            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. The mood of the photo is sad and melancholic. The person in the photo looks like he will burst into tears in any moment. Someone had described that person like this: ${form.personDescription}. Saturation: 0. Kodak Tri-x grains.`,
+            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. Saturation: 0. Kodak Tri-x grains... ${form.personDescription}`,
           }),
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.message || `An error has occurred while generating an image: ${response.status}`);
+        }
+
         const data = await response.json();
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
 
-        // Here we also generate the message after the image is generated.
         await generateMessage(form.prompt);
 
       } catch (err) {
-        alert(err);
+        alert(`Fetch error: ${err.message}`);
       } finally {
         setGeneratingImg(false);
       }
@@ -88,7 +92,6 @@ const CreatePost = () => {
       alert('Please provide proper details');
     }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,11 +107,16 @@ const CreatePost = () => {
           body: JSON.stringify({ ...form }),
         });
 
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.message || `An error has occurred while handling submit: ${response.status}`);
+        }
+
         await response.json();
         alert('Success');
         navigate('/');
       } catch (err) {
-        alert(err);
+        alert(`Fetch error: ${err.message}`);
       } finally {
         setLoading(false);
       }
@@ -116,6 +124,7 @@ const CreatePost = () => {
       alert('Please generate an image with proper details');
     }
   };
+
 
   const ageOptions = [
     "1-3 years",

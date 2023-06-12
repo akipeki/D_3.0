@@ -33,12 +33,15 @@ const Home = () => {
         },
       });
 
-      if (response.ok) {
-        const result = await response.json();
-        setAllPosts(result.data.reverse());
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.message || `An error has occurred: ${response.status}`);
       }
+
+      const result = await response.json();
+      setAllPosts(result.data.reverse());
     } catch (err) {
-      alert(err);
+      alert(`Fetch error: ${err.message}`);
     } finally {
       setLoading(false);
     }
