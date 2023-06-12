@@ -4,14 +4,14 @@ import fetch from 'node-fetch';
 // Controller for handling chat with GPT-3
 export const chatWithGpt3 = async (req, res) => {
   // Retrieve the API key from environment variables
-  const API_KEY = process.env.API_KEY;
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
   // Set options for the fetch call
   const options = {
     method: "POST",  // The type of HTTP request
     headers: {
       // Add the API key to the request headers for authentication
-      "Authorization": `Bearer ${API_KEY}`,
+      "Authorization": `Bearer ${OPENAI_API_KEY}`,
       // Specify the type of data being sent
       "Content-Type": "application/json"
     },
