@@ -2,6 +2,8 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import { Configuration, OpenAIApi } from 'openai';
 
+import Post from '../mongodb/models/post.js';  // Import the Post model
+
 dotenv.config();
 
 const configuration = new Configuration({
@@ -20,6 +22,13 @@ router.route('/').post(async (req, res) => {
             prompt: prompt,
             max_tokens: 200,
             temperature: 0.7,
+        });
+
+        // Save the response in the database
+        const newPost = await Post.create({
+            name: "GPT-3 Generated Text",
+            prompt: prompt,
+            photo: aiResponse.data.choices[0].text,
         });
 
         res.status(200).send(aiResponse.data.choices[0].text);
