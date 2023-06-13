@@ -23,7 +23,7 @@ cloudinary.config({
 // Sorts the fetched posts by their creation time in descending order
 router.route('/').get(async (req, res) => {
   try {
-    const posts = await Post.find({}).sort({ createdAt: -1 });
+    const posts = await Post.find({});
     res.status(200).json({ success: true, data: posts })
   } catch (error) {
     res.status(500).json({ success: false, message: 'Fetching posts failed, please try again' });
