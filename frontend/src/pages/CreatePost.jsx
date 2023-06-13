@@ -77,7 +77,7 @@ const CreatePost = () => {
         }
 
         const data = await response.json();
-        setForm({ ...form, prompt: data });
+        // setForm({ ...form, prompt: data });
         setGeneratedText(data);
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
@@ -94,7 +94,7 @@ const CreatePost = () => {
         const response = await fetch('https://dille.onrender.com/api/v1/dalle', {
           method: 'POST',
           body: JSON.stringify({
-            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. Saturation: 0. Kodak Tri-x grains... ${form.personDescription}`,
+            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. Photo shot width leica using 80mm lens. Aperture: 2.8. Saturation: 0. Kodak 400 Tri-x grains. Person in the photo looks odd, really unsymmetric face. Someone have once described that person with words: ${form.personDescription}`,
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -124,39 +124,47 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.prompt && form.photo && form.gender && form.age && form.country) {
+    if (form.prompt && form.gender && form.age && form.country) {
       setLoading(true);
       try {
-        // Generate GPT-3 response for the prompt
-        const generatedText = await getGPT3Response(form.prompt);
+        // Call the generateImage function and wait for it to complete
+        await generateImage();
 
-        const response = await fetch('https://dille.onrender.com/api/v1/post', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          // Include generatedText in the request body
-          body: JSON.stringify({ ...form, generatedText }),
-        });
+        // Only generate the GPT-3 response if a photo was successfully created
+        if (form.photo) {
+          // Generate GPT-3 response for the prompt
+          const generatedText = await getGPT3Response(form.prompt);
 
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.message || `An error has occurred while handling submit: ${response.status}`);
+          const response = await fetch('https://dille.onrender.com/api/v1/post', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            // Include generatedText in the request body
+            body: JSON.stringify({ ...form, prompt: generatedText }),
+
+          });
+
+          if (!response.ok) {
+            const errData = await response.json();
+            throw new Error(errData.message || `An error has occurred while handling submit: ${response.status}`);
+          }
+
+          await response.json();
+          alert('Success');
+          navigate('/');
+        } else {
+          alert('Image generation failed. Please try again.');
         }
-
-        await response.json();
-        alert('Success');
-        navigate('/');
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
       } finally {
         setLoading(false);
       }
     } else {
-      alert('Please generate an image with proper details');
+      alert('Please provide complete details');
     }
   };
-
 
   const ageOptions = [
     "1-3 years",

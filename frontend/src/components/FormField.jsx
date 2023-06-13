@@ -20,7 +20,7 @@ const FormField = ({
           htmlFor={name}
           className='block text-sm font-medium text-grey-900'
         >
-          {labelName} // display label
+          {labelName}
         </label>
         {isSurpriseMe && (
           <button
@@ -28,7 +28,7 @@ const FormField = ({
             onClick={handleSurpriseMe} // handle click event
             className='font-semibold text-xs bg-[#ECECF1] py-1 px-2 rounded-[5px] text-black'
           >
-            Examples from our community // button text
+            Examples from our community
           </button>
         )}
       </div>
@@ -44,7 +44,7 @@ const FormField = ({
           onChange={handleChange} // handle change event
           required
         >
-          <option value='' disabled>{placeholder}</option> // default option
+          <option value='' disabled>{placeholder}</option>
           {options.map((option, index) => ( // map through options and create option elements
             <option key={index} value={option}>
               {option}
