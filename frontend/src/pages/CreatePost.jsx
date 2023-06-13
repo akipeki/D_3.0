@@ -64,7 +64,10 @@ const CreatePost = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: `You are a talented author with skills to touch people with short texts... ${prompt}`,
+            prompt: `You are a talented author with skills to touch people with short texts.
+            Create a touching apology using min 100 tokens/max 200 tokens. Keep the language and vocabulary simple,
+             honest, and straight. Start your story with a straight apology: Something like "I'm sorry", "I want to apologize to you",
+              or something similar. Use this text as your reference for the touching text you create: ${prompt}`,
           }),
         });
 
