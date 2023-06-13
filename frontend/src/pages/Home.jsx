@@ -42,7 +42,7 @@ const Home = () => {
       // Check for server errors
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.message || `An error has occurred: ${response.status}`);
+        throw new Error(errData.message || `An error has occurred while fetching: ${response.status}`);
       }
 
       // Parse the response data and update allPosts state
