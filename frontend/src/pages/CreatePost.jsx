@@ -22,33 +22,6 @@ const CreatePost = () => {
     personDescription: '',
   });
 
-  // Async function to fetch generated text from GPT-3 model based on user's prompt
-  const getGPT3Response = async (prompt) => {
-    // A try/catch block is used for error handling
-    try {
-      // Fetch function is used to send a POST request to the GPT-3 API with prompt as input
-      const response = await fetch('https://dille.onrender.com/api/v1/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt }),
-      });
-
-      // If response is not ok, throw an error
-      if (!response.ok) {
-        throw new Error('Failed to generate GPT-3 response');
-      }
-
-      // Convert the response to JSON
-      const data = await response.json();
-      // Return the generated text from the response
-      return data.text;
-    } catch (err) {
-      console.error(err);
-      return '';
-    }
-  };
 
   // State variables for tracking loading states and generated text
   const [generatingImg, setGeneratingImg] = useState(false);
@@ -187,6 +160,34 @@ const CreatePost = () => {
       }
     } else {
       alert('Please generate an image with proper details');
+    }
+  };
+
+  // Async function to fetch generated text from GPT-3 model based on user's prompt
+  const getGPT3Response = async (prompt) => {
+    // A try/catch block is used for error handling
+    try {
+      // Fetch function is used to send a POST request to the GPT-3 API with prompt as input
+      const response = await fetch('https://dille.onrender.com/api/v1/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      });
+
+      // If response is not ok, throw an error
+      if (!response.ok) {
+        throw new Error('Failed to generate GPT-3 response');
+      }
+
+      // Convert the response to JSON
+      const data = await response.json();
+      // Return the generated text from the response
+      return data.text;
+    } catch (err) {
+      console.error(err);
+      return '';
     }
   };
 
