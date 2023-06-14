@@ -37,7 +37,7 @@ const FormField = ({
         <select
           id={name}
           name={name}
-          className='bg-gray-50 border border-gray-300 text-gray-900
+          className='bg-gray-60 border border-gray-300 text-gray-900
           ext-sm rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff]
           outline-none block w-full p-3'
           value={value} // current value
@@ -56,8 +56,8 @@ const FormField = ({
           type={type} // field type
           id={name}
           name={name}
-          className='bg-gray-50 border boder-gray-300 text-gray-900
-          text-sm rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff]
+          className='bg-gray-60 border boder-gray-300 text-gray-900
+          text-sm rounded-lg focus:bg-white focus:ring-[#4649ff] focus:border-[#4649ff] 
           outline-none block w-full p-3'
           placeholder={placeholder} // placeholder text
           value={value} // current value
