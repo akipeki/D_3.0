@@ -1,6 +1,7 @@
 import download from './download.png';
 import logo from './logo.svg';
 import logo_SORRY from './logo_SORRY.svg';
+import LOGO_SORRY_OS from './LOGO_SORRY_OS.svg';
 import preview from './preview.png';
 
 
@@ -12,5 +13,6 @@ export {
   download,
   logo,
   logo_SORRY,
+  LOGO_SORRY_OS,
   preview,
 };
