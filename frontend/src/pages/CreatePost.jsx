@@ -77,8 +77,7 @@ const CreatePost = () => {
         }
 
         const data = await response.json();
-        // setForm({ ...form, prompt: data });
-        setGeneratedText(data);
+        setGeneratedText(data.content);
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
       }
@@ -86,6 +85,7 @@ const CreatePost = () => {
       alert('Please provide a story to apologize');
     }
   };
+
 
   const generateImage = async () => {
     if (form.prompt && form.gender && form.age) {
@@ -121,41 +121,21 @@ const CreatePost = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleGenerate = async () => {
     if (form.prompt && form.gender && form.age && form.country) {
       setLoading(true);
       try {
-        // Call the generateImage function and wait for it to complete
-        await generateImage();
-        await generatedText();
+        // Only generate the image if it hasn't been generated yet
+        if (!form.photo) {
+          await generateImage();
+        }
 
         // Only generate the GPT-3 response if a photo was successfully created
-        if (form.photo) {
-          // Generate GPT-3 response for the prompt
-          const generatedText = await getGPT3Response(form.prompt);
+        if (form.photo && !generatedText) {
+          const generatedTextResponse = await getGPT3Response(form.prompt); // changed from form.content
 
-          /* const response = await fetch('https://dille.onrender.com/api/v1/post', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            // Include generatedText in the request body
-            body: JSON.stringify({ ...form, prompt: generatedText }),
-
-          });
-
-          if (!response.ok) {
-            const errData = await response.json();
-            throw new Error(errData.message || `An error has occurred while handling submit: ${response.status}`);
-          }
-
-          await response.json();
-          alert('Success');
-          navigate('/');
-        } else {
-          alert('Image generation failed. Please try again.'); */
+          // Update the generatedText state with the result
+          setGeneratedText(generatedTextResponse);
         }
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
@@ -166,6 +146,41 @@ const CreatePost = () => {
       alert('Please provide complete details');
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (form.name && form.prompt && form.photo && generatedText) {
+      setLoading(true);
+      try {
+        const response = await fetch('https://dille.onrender.com/api/v1/post', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...form, generatedText: generatedText }), // include generated text in the form
+        });
+
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.message || `An error has occurred while generating an image: ${response.status}`);
+        }
+
+        await response.json();
+        alert('Success');
+        navigate('/'); // Navigate to the root route after successful form submission
+      } catch (err) {
+        alert(`Fetch error: ${err.message}`);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert('Please generate image and text first');
+    }
+  };
+
+
+
 
   const ageOptions = [
     "1-3 years",
@@ -267,11 +282,11 @@ const CreatePost = () => {
             handleChange={handleChange}
           />
 
-          <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
+          <div className='relative bg-gray-50 border border-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
             {form.photo ? (
               <img
                 src={form.photo}
-                alt={form.prompt}
+                alt={form.content}
                 className='w-full h-full object-contain'
               />
             ) : (
@@ -291,16 +306,20 @@ const CreatePost = () => {
         </div>
 
         <div className='mt-5'>
-          <p className='mt-2 text-[#666e75] text-[14px]'>
+          <p className='mt-2 text-[#666e75] text-[14px] pb-8'>
             {generatedText}
           </p>
-          <button
-            type='button'
-            onClick={handleSubmit}
-            className=' text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
-          >
-            {generatingImg ? 'Generating...' : 'Generate'}
-          </button>
+
+          {(!form.photo || !generatedText) && (
+            <button
+              type='button'
+              onClick={handleGenerate}
+              className=' text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+            >
+              {generatingImg ? 'Generating...' : 'Generate'}
+            </button>
+          )}
+
         </div>
 
         <div className='mt-10'>
