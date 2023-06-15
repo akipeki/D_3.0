@@ -25,7 +25,7 @@ router.route('/completions').post(async (req, res) => {
     try {
         const { prompt } = req.body;
         // Use the OpenAI API to create a new AI completion
-        const aiResponse = await openai.chatModels.createCompletion({
+        const aiResponse = await openai.createCompletion({
             model: "gpt-3.5-turbo",
             prompt: prompt,
             max_tokens: 200,
