@@ -40,12 +40,12 @@ router.route('/completions').post(async (req, res) => {
         });
 
         // Save the response from the AI in the database
-        const newPost = await Post.create({
-            name: "GPT-3 Generated Text",
-            prompt: prompt,
-            photo: aiResponse.data.choices[0].text,
-
-        });
+        /*  const newPost = await Post.create({
+              name: "GPT-3 Generated Text",
+              prompt: prompt,
+              photo: aiResponse.data.choices[0].text,
+  
+          }); */
 
         // Send the AI response back to the client
         res.status(200).send(chatCompletion);
