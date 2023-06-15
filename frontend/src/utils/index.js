@@ -34,7 +34,7 @@ export async function getMessages(value) {
     };
 
     try {
-        const response = await fetch("https://dille.onrender.com/api/v1/chat/", options);
+        const response = await fetch("https://api.openai.com/v1/chat/completions", options);
         const data = await response.json();
         return data.choices[0].message;
     } catch (error) {

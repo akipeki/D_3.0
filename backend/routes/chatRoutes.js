@@ -21,7 +21,7 @@ const openai = new OpenAIApi(configuration);
 const router = express.Router();
 
 // Set a route handler for POST requests on the base URL
-router.route('/').post(async (req, res) => {
+router.route('/completions').post(async (req, res) => {
     try {
         const { prompt } = req.body;
         // Use the OpenAI API to create a new AI completion
