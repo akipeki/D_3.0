@@ -25,13 +25,18 @@ router.route('/completions').post(async (req, res) => {
     try {
         const { prompt } = req.body;
         // Use the OpenAI API to create a new AI completion
-        const aiResponse = await openai.createCompletion({
+        /*  const aiResponse = await openai.createCompletion({
+              model: "gpt-3.5-turbo",
+              prompt: prompt,
+              max_tokens: 200,
+              temperature: 0.7,
+              n: 1,
+              stop: null,
+          }); */
+
+        const chatCompletion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
-            prompt: prompt,
-            max_tokens: 200,
-            temperature: 0.7,
-            n: 1,
-            stop: null,
+            messages: [{ role: "user", content: prompt }],
         });
 
         // Save the response from the AI in the database
@@ -43,7 +48,7 @@ router.route('/completions').post(async (req, res) => {
         });
 
         // Send the AI response back to the client
-        res.status(200).send(aiResponse.data.choices[0].text);
+        res.status(200).send(chatCompletion);
     } catch (error) {
         // Log the error and send back a 500 status with the error message
         console.error(error);
