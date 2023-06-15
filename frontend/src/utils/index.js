@@ -20,7 +20,7 @@ export async function downloadImage(_id, photo) {
 }
 
 export async function getMessages(value) {
-    const prompt = "You are a talented author with skills to touch people with short texts. Create an touching apology using min 100 tokens/max 200 tokens. Keep the language and vocabularity simple, honest and straight. Start your story with straight apology: Something like \"I'm sorry\", \"I want to apologice you\", or something similar. You this text as your reference for the touching text you create:";
+    const prompt = "You are a talented author with skills to touch people with short texts. Create an touching apology using min 60 tokens/max 120 tokens. Keep the language and vocabularity simple, honest and straight. Start your story with straight apology: Something like \"I'm sorry\", \"I want to apologice you\", or something similar. You this text as your reference for the touching text you create:";
     const completeQuestion = `${prompt} ${value}`;
 
     const options = {

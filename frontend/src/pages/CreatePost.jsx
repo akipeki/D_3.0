@@ -46,6 +46,8 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
   const [generatedText, setGeneratedText] = useState("");
+  const [generating, setGenerating] = useState(false);
+  const [sharing, setSharing] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -65,7 +67,7 @@ const CreatePost = () => {
           },
           body: JSON.stringify({
             prompt: `You are a talented author with skills to touch people with short texts.
-            Create a touching apology using min 100 tokens/max 200 tokens. Keep the language and vocabulary simple,
+            Create a touching apology using max 100 tokens. Keep the language and vocabulary simple,
              honest, and straight. Start your story with a straight apology: Something like "I'm sorry", "I want to apologize to you",
               or something similar. Use this text as your reference for the touching text you create: ${prompt}`,
           }),
@@ -123,6 +125,7 @@ const CreatePost = () => {
 
   const handleGenerate = async () => {
     if (form.prompt && form.gender && form.age && form.country) {
+      setGenerating(true);
       setLoading(true);
       try {
         // Only generate the image if it hasn't been generated yet
@@ -140,7 +143,9 @@ const CreatePost = () => {
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
       } finally {
+        setGenerating(false);
         setLoading(false);
+
       }
     } else {
       alert('Please provide complete details');
@@ -151,6 +156,7 @@ const CreatePost = () => {
     e.preventDefault();
 
     if (form.name && form.prompt && form.photo && generatedText) {
+      setSharing(true);
       setLoading(true);
       try {
         const response = await fetch('https://dille.onrender.com/api/v1/post', {
@@ -172,6 +178,7 @@ const CreatePost = () => {
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
       } finally {
+        setSharing(false);
         setLoading(false);
       }
     } else {
@@ -282,7 +289,7 @@ const CreatePost = () => {
             handleChange={handleChange}
           />
 
-          <div className='relative bg-gray-50 border border-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
+          <div className='relative bg-gray-50 border border-gray text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
             {form.photo ? (
               <img
                 src={form.photo}
@@ -298,7 +305,7 @@ const CreatePost = () => {
             )}
 
             {generatingImg && (
-              <div className='absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg'>
+              <div className='absolute inset-0 z-0 flex border border-none justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg'>
                 <Loader />
               </div>
             )}

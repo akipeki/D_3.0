@@ -13,7 +13,7 @@ const Card = ({ _id, name, prompt, photo, generatedText }) => {
             />
             <div className='h-full group-hover:flex flex-col items-center justify-end 
    hidden absolute top-0 left-0 right-0 bg-white opacity-70 p-8 rounded-md mb-3'>
-                <p className='text-black text-sm overflow-y-auto prompt mb-4 text-center'>{generatedText || prompt}</p>
+                <p className='text-black text-sm overflow-y-auto prompt mb-4 text-center'>{generatedText}</p>
                 <div className='mt-5 flex justify-between items-center gap-2 w-full'>
                     <div className='flex items-center gap-2'>
                         <div className='w-7 h-7 rounded-full object-cover bg-green-700
