@@ -58,7 +58,7 @@ const CreatePost = () => {
   const generateMessage = async (prompt) => {
     if (prompt) {
       try {
-        const response = await fetch('https://dille.onrender.com/api/v1/chat/', {
+        const response = await fetch('https://dille.onrender.com/api/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
