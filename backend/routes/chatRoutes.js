@@ -38,7 +38,7 @@ router.route('/completions').post(async (req, res) => {
             model: "gpt-3.5-turbo",
             messages: [{ role: "user", content: prompt }],
             max_tokens: 200,
-            temperature: 0.7,
+            temperature: 1.4,
         });
 
         // Save the response from the AI in the database
