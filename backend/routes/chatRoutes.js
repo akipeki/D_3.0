@@ -30,6 +30,8 @@ router.route('/completions').post(async (req, res) => {
             prompt: prompt,
             max_tokens: 200,
             temperature: 0.7,
+            n: 1,
+            stop: null,
         });
 
         // Save the response from the AI in the database
@@ -37,6 +39,7 @@ router.route('/completions').post(async (req, res) => {
             name: "GPT-3 Generated Text",
             prompt: prompt,
             photo: aiResponse.data.choices[0].text,
+
         });
 
         // Send the AI response back to the client
