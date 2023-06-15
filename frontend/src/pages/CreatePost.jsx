@@ -58,7 +58,7 @@ const CreatePost = () => {
   const generateMessage = async (prompt) => {
     if (prompt) {
       try {
-        const response = await fetch('https://dille.onrender.com/api/v1/chat', {
+        const response = await fetch('https://dille.onrender.com/api/v1/chat/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -296,7 +296,7 @@ const CreatePost = () => {
           </p>
           <button
             type='button'
-            onClick={generateImage}
+            onClick={handleSubmit}
             className=' text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
           >
             {generatingImg ? 'Generating...' : 'Generate'}
