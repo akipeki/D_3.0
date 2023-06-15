@@ -129,13 +129,14 @@ const CreatePost = () => {
       try {
         // Call the generateImage function and wait for it to complete
         await generateImage();
+        await generatedText();
 
         // Only generate the GPT-3 response if a photo was successfully created
         if (form.photo) {
           // Generate GPT-3 response for the prompt
           const generatedText = await getGPT3Response(form.prompt);
 
-          const response = await fetch('https://dille.onrender.com/api/v1/post', {
+          /* const response = await fetch('https://dille.onrender.com/api/v1/post', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -154,7 +155,7 @@ const CreatePost = () => {
           alert('Success');
           navigate('/');
         } else {
-          alert('Image generation failed. Please try again.');
+          alert('Image generation failed. Please try again.'); */
         }
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
