@@ -48,7 +48,7 @@ router.route('/completions').post(async (req, res) => {
           }); */
 
         // Send the AI response back to the client
-        res.status(200).send(chatCompletion);
+        res.status(200).send(chatCompletion.data.choices[0].message);
     } catch (error) {
         // Log the error and send back a 500 status with the error message
         console.error(error);
