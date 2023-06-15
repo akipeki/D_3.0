@@ -8,7 +8,7 @@ const Post = new mongoose.Schema({
     name: { type: String, required: true },
     prompt: { type: String, required: true },
     photo: { type: String, required: true },
-    content: { type: String, required: true },
+    generatedText: { type: String, required: true },
 })
 
 // We use the blueprint (the "Post" schema) we created above to create a model. This model is like a tool that lets us create and manage our posts in the database.
