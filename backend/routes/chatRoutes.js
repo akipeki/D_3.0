@@ -36,13 +36,9 @@ router.route('/completions').post(async (req, res) => {
 
         const chatCompletion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
-            messages: [{
-                role: "user",
-                content: prompt,
-                max_tokens: 200,
-                temperature: 0.7,
-                n: 1,
-            }],
+            messages: [{ role: "user", content: prompt }],
+            max_tokens: 200,
+            temperature: 0.7,
         });
 
         // Save the response from the AI in the database
