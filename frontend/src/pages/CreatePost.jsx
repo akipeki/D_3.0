@@ -305,6 +305,7 @@ const CreatePost = () => {
           </div>
         </div>
 
+
         <div className='mt-5'>
           <p className='mt-2 text-[#666e75] text-[14px] pb-8'>
             {generatedText}
