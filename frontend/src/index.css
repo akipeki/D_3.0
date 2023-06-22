@@ -1,19 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 * {
-font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
+
 }
+
 @media screen and (min-width: 480px) {
     .card:nth-child(7n + 1) {
-grid-column: auto/span 2;
-grid-row: auto/span 2;
+        grid-column: auto/span 2;
+        grid-row: auto/span 2;
     }
 }
+
 .prompt::-webkit-scrollbar {
-width: 5px;
+    width: 5px;
 }
+
 .prompt::-webkit-scrollbar-thumb {
-background-color: #666e75;
-border-radius: 5px;
+    background-color: #666e75;
+    border-radius: 5px;
+}
+
+.button-class-name {
+    font-size: 20px;
+    /* for the page navigation in the home page */
+}
+
+.outerWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerWrapper {
+    width: 100%;
+    margin: 0 auto;
 }

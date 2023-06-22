@@ -16,6 +16,8 @@ const CreatePost = () => {
     age: '',
     country: '',
     personDescription: '',
+    tone: '',
+    relationship: '',
   });
 
   const getGPT3Response = async (prompt) => {
@@ -57,8 +59,8 @@ const CreatePost = () => {
   };
 
 
-  const generateMessage = async (prompt) => {
-    if (prompt) {
+  const generateMessage = async (prompt, tone, age, relationship,) => {
+    if (prompt && tone && age && relationship) {
       try {
         const response = await fetch('https://dille.onrender.com/api/v1/chat/completions', {
           method: 'POST',
@@ -66,10 +68,14 @@ const CreatePost = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: `You are a talented author with skills to touch people with short texts.
-            Create a touching apology using max 100 tokens. Keep the language and vocabulary simple,
-             honest, and straight. Start your story with a straight apology: Something like "I'm sorry", "I want to apologize to you",
-              or something similar. Use this text as your reference for the touching text you create: ${prompt}`,
+            prompt: `As a competent writer, your task is to create a short yet
+             compelling ${tone} apology within the constraints of 3-6 sentences.
+             Your language should be straightforward and understandable.
+             Base your apology on this statement: [ ${prompt} ].
+             You're addressing an individual who is ${age} years old,
+             and you're their ${relationship}. Please do not include any personal names or greetings/closings.
+             The aim should be solely to offer a sincere apology.
+             Be sure to consider the seriousness of the issue and adjust your tone and language accordingly.`,
           }),
         });
 
@@ -84,9 +90,10 @@ const CreatePost = () => {
         alert(`Fetch error: ${err.message}`);
       }
     } else {
-      alert('Please provide a story to apologize');
+      alert('Please provide a story to apologize, and fill in all the information needed.');
     }
   };
+
 
 
   const generateImage = async () => {
@@ -96,7 +103,8 @@ const CreatePost = () => {
         const response = await fetch('https://dille.onrender.com/api/v1/dalle', {
           method: 'POST',
           body: JSON.stringify({
-            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. Photo shot width leica using 80mm lens. Aperture: 2.8. Saturation: 0. Kodak 400 Tri-x grains. Person in the photo looks odd, really unsymmetric face. Someone have once described that person with words: ${form.personDescription}`,
+            prompt: `Striking black and white eye-level closeup of a ${form.age} year old fragile ${form.gender} from ${form.country}. Photo shot width leica using 80mm lens. Aperture: 2.8. Saturation: 0. Kodak 800 Tri-x grains. The subject's face is uniquely asymmetric and is often described as ${form.personDescription}. Avoid artificial sharpening of the eyes. The overall impression should be that they could break into tears at any moment. Place model always in the middle of the photo. Photo taken in teh eye-level.`,
+
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -111,7 +119,7 @@ const CreatePost = () => {
         const data = await response.json();
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
 
-        await generateMessage(form.prompt);
+        await generateMessage(form.prompt, form.gender, form.age, form.country, form.personDescription);
 
       } catch (err) {
         alert(`Fetch error: ${err.message}`);
@@ -124,7 +132,7 @@ const CreatePost = () => {
   };
 
   const handleGenerate = async () => {
-    if (form.prompt && form.gender && form.age && form.country) {
+    if (form.name && form.prompt && form.gender && form.age && form.country && form.tone && form.relationship) {
       setGenerating(true);
       setLoading(true);
       try {
@@ -209,11 +217,51 @@ const CreatePost = () => {
 
   const genderOptions = ['girl', 'boy', 'man', 'woman', 'child', 'adult'];
 
+  const toneOptions = [
+    "Sincere",
+    "Formal",
+    "Casual",
+    "Dramatic",
+    "Regretful",
+    "Depressed",
+    "Heartfelt",
+    "Genuine",
+    "Hysteric",
+    "Empathetic",
+    "Straightforward"
+  ];
+
+  const relationshipOptions = [
+    "Friend",
+    "Son",
+    "Daughter",
+    "Child",
+    "Father",
+    "Mother",
+    "Parent",
+    "Grandparent",
+    "Grandchild",
+    "Relative",
+    "Co-worker",
+    "Classmate",
+    "Acquaintance",
+    "Neighbor",
+    "Partner",
+    "Ex-partner",
+    "Lover",
+    "Ex-Lover",
+    "Mentor",
+    "Mentee",
+    "Sibling",
+    "Special Connection",
+    "We didn't have any connection",
+  ];
+
   return (
     <section className='max-w-7xl mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>Share your story</h1>
-        <p className='mt-2 text-[#666e75] text-[14px] max-w-[500px]'>Time to say I'm Sorry. In case you can no longer apologize to the person you have hurt directly, you can do it anonymously within our community.
+        <p className='mt-2 text-[#666e75] text-[16px] max-w-[500px]'>Time to say I'm Sorry. In case you can no longer apologize to the person you have hurt directly, you can do it anonymously within our community.
           <br /><br />
           Please fill out the provided forms. With a little help from AI, we can share your apology anonymously with others.
           To protect your identity, we kindly ask that you do not reveal your full name.
@@ -232,17 +280,6 @@ const CreatePost = () => {
             placeholder='Ex., Alexander'
             value={form.name}
             handleChange={handleChange}
-          />
-
-          <FormField
-            labelName="I want to apologize that..."
-            type='text'
-            name='prompt'
-            placeholder='Ex., Not being there when you needed a friend the most'
-            value={form.prompt}
-            handleChange={handleChange}
-            isSurpriseMe
-            handleSurpriseMe={handleSurpriseMe}
           />
 
           <div className="flex justify-between gap-4">
@@ -272,10 +309,45 @@ const CreatePost = () => {
           </div>
 
           <FormField
-            labelName='How would you describe the person you want to apologize'
+            labelName="I want to apologize that..."
+            type='text'
+            name='prompt'
+            placeholder='Ex., Not being there when you needed a friend the most'
+            value={form.prompt}
+            handleChange={handleChange}
+            isSurpriseMe
+            handleSurpriseMe={handleSurpriseMe}
+          />
+
+          <div className="flex justify-between gap-4">
+            <FormField
+              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
+              labelName="Tone of Apology"
+              type="select"
+              name="tone"
+              placeholder="Select Tone"
+              value={form.tone}
+              handleChange={handleChange}
+              options={toneOptions}
+            />
+
+            <FormField
+              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
+              labelName="Your Connection to the Person"
+              type="select"
+              name="relationship"
+              placeholder="Select Relationship"
+              value={form.relationship}
+              handleChange={handleChange}
+              options={relationshipOptions}
+            />
+          </div>
+
+          <FormField
+            labelName='Description of the Person'
             type='text'
             name='personDescription'
-            placeholder='Ex., Cute and kind. Friendly eyes, curly hair. Always helping for others.'
+            placeholder='Ex., Cute and kind. Friendly eyes. Always helping for others.'
             value={form.personDescription}
             handleChange={handleChange}
           />
@@ -289,7 +361,7 @@ const CreatePost = () => {
             handleChange={handleChange}
           />
 
-          <div className='relative bg-gray-50 border border-gray text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
+          <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
             {form.photo ? (
               <img
                 src={form.photo}
@@ -314,7 +386,7 @@ const CreatePost = () => {
 
 
         <div className='mt-5'>
-          <p className='mt-2 text-[#666e75] text-[14px] pb-8'>
+          <p className='mt-2 text-[#666e75] text-[16px] pb-8'>
             {generatedText}
           </p>
 
@@ -322,7 +394,7 @@ const CreatePost = () => {
             <button
               type='button'
               onClick={handleGenerate}
-              className=' text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+              className=' text-white text-[16px] bg-[green] font-medium rounded-md w-full sm:w-auto px-5 py-2.5 text-center'
             >
               {generatingImg ? 'Generating...' : 'Generate'}
             </button>
@@ -331,10 +403,10 @@ const CreatePost = () => {
         </div>
 
         <div className='mt-10'>
-          <p className='mt-2 text-[#666e75] text-[14px]'>** Once you have created the image you want, you can share it with others in the community **</p>
+          <p className='mt-2 text-[#666e75] text-[14px]'>** Once you have created the content you want, you can share it with others in the community **</p>
           <button
             type='submit'
-            className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+            className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center'
           >
             {loading ? 'Sharing...' : 'Share with the Community'}
           </button>
