@@ -30,6 +30,24 @@ router.route('/').get(async (req, res) => {
   }
 });
 
+// Route handler to GET a single post
+// The post is fetched by its ID
+router.route('/:id').get(async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+
+    res.status(200).json({ success: true, data: post });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Fetching post failed, please try again' });
+  }
+});
+
+
 // Route handler to CREATE a post
 // The photo is uploaded to Cloudinary and a URL is generated to access the photo
 router.route('/').post(async (req, res) => {
@@ -67,6 +85,52 @@ router.route('/:id').delete(async (req, res) => {
     res.status(500).json({ success: false, message: 'Error deleting post' });
   }
 });
+
+
+// Route handler to UPDATE a post
+// The post is fetched by its ID and if found, is updated
+router.route('/:id').put(async (req, res) => {
+  try {
+    // Deconstruct the data sent from the client
+    // If a new photo is being sent, it will be available in `photo`
+    const { name, prompt, photo, generatedText } = req.body;
+
+    let photoUrl;
+    // If a new photo is being sent, upload it to Cloudinary
+    if (photo) {
+      const uploadResponse = await cloudinary.uploader.upload(photo);
+      photoUrl = uploadResponse.url;  // The URL of the uploaded image on Cloudinary
+    }
+
+    // Find the post to be updated using the ID provided in the route parameter
+    let post = await Post.findById(req.params.id);
+
+    // If the post is not found, return an error message
+    if (!post) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+
+    // If new data is provided, update the post data
+    // If not, keep the existing data
+    post.name = name || post.name;
+    post.prompt = prompt || post.prompt;
+    post.photo = photoUrl || post.photo;  // If a new photo was uploaded, `photoUrl` will be the new URL
+    post.generatedText = generatedText || post.generatedText;
+
+    // Save the updated post to the database
+    const updatedPost = await post.save();
+
+    // Send a response back to the client with the updated post data
+    res.status(200).json({ success: true, data: updatedPost });
+
+  } catch (error) {
+    // If something goes wrong, log the error and send a response to the client
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Error updating post' });
+  }
+});
+
+
 
 // Export the router to be used in the main server file
 export default router;
