@@ -19,7 +19,7 @@ const openai = new OpenAIApi(configuration);
 
 // Route handler to GET the base route. Sends a welcome message
 router.route('/').get((req, res) => {
-    res.send('Hello from DALL-E!');
+    res.send('Hello from PEK-1');
 })
 
 // Route handler to POST to the base route
