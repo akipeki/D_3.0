@@ -2,17 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@media screen and (min-width: 480px) {
+    /*  .card:nth-child(7n + 1) {
+        grid-column: auto/span 2;
+        grid-row: auto/span 2;
+    } */
+
+    .card {
+        grid-column: auto/span 2;
+        grid-row: auto/span 2;
+
+    }
+}
 
 * {
     font-family: 'Roboto', sans-serif;
 
-}
-
-@media screen and (min-width: 480px) {
-    .card:nth-child(7n + 1) {
-        grid-column: auto/span 2;
-        grid-row: auto/span 2;
-    }
 }
 
 .prompt::-webkit-scrollbar {
@@ -26,8 +31,36 @@
 
 .button-class-name {
     font-size: 20px;
-    /* for the page navigation in the home page */
 }
+
+.scrollbar-padding {
+    width: calc(100% - 3px);
+
+    height: calc(100% - 3px);
+
+    padding-right: 8px;
+
+    padding-bottom: 3px;
+
+    overflow: auto;
+}
+
+
+.scrollbar-padding::-webkit-scrollbar {
+    width: 7px;
+}
+
+.scrollbar-padding::-webkit-scrollbar-thumb {
+    background: #888;
+
+    border-radius: 8px;
+}
+
+.scrollbar-padding::-webkit-scrollbar-thumb:hover {
+    background: #555;
+
+}
+
 
 .outerWrapper {
     width: 100%;
@@ -37,6 +70,43 @@
 }
 
 .innerWrapper {
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
+}
+
+
+.btn-back {
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    text-decoration: underline;
+}
+
+.content {
+    text-align: left;
+}
+
+
+.some-network {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1080px) {
+    .innerWrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+
+@media screen and (min-width: 1600px) {
+    .innerWrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
 }

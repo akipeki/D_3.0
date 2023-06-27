@@ -2,26 +2,35 @@ import { logo } from '../assets';
 
 const Footer = () => {
     return (
-        <footer class="bg-white shadow dark:bg-gray-900 m-0">
-            <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-                <div class="sm:flex sm:items-center sm:justify-between">
-                    <a href="http://korea.fi/" class="flex items-center mb-4 sm:mb-0">
-                        <img src={logo} alt="logo" className='w-24 pt-12 pb-12 object-contain flex justify-center items-center' />
+        <footer className="bg-white m-0 mx-6">
+            <div className="w-full max-w-screen-xl mx-auto p-4 md:p-8 flex flex-col md:flex-row md:justify-between md:items-center">
+                <div className="flex justify-center md:justify-start mb-4">
+                    <a href="http://korea.fi/">
+                        <img src={logo} alt="logo" className='w-24 object-contain py-4' />
                     </a>
-                    <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-[#667e75] sm:mb-0 dark:text-[#667e75]">
-                        <li>
-                            <a href="/about" class="mr-4 hover:underline underline-offset-8 decoration-2 md:mr-6 ">About</a>
-                        </li>
-                        <li>
-                            <a href="/contact" class="mr-4 hover:underline underline-offset-8 decoration-2 md:mr-6 ">Contact</a>
-                        </li>
-                    </ul>
                 </div>
+                <ul className="flex flex-row flex-wrap justify-center items-center mb-4 text-sm font-medium text-[#8a8a8a] ">
+                    <li>
+                        <a href="/" className="mx-4 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px]">Home</a>
+                    </li>
+                    <li>
+                        <a href="/faq" className="mx-4 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px]">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="/about" className="mx-4 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px]">About</a>
+                    </li>
+                    <li>
+                        <a href="/contact" className="mx-4 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px]">Contact</a>
+                    </li>
+                </ul>
+                <ul className="flex justify-center sm:mt-4 md:mt-0 pb-4 items-center text-sm font-medium text-[#8a8a8a] ">
+                    <li>
+                        <a href="/instagram" target='_blank' className="mx-4 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px]">Instagram</a>
+                    </li>
+                </ul>
             </div>
-        </footer>
+        </footer >
     )
 }
 
 export default Footer
-
-

@@ -7,7 +7,7 @@ const RenderCards = ({ data, title }) => {
   // If data is present, map over it and create Card components
   if (data?.length > 0) {
     return (
-      data.map((post) => <Card key={post._id} {...post} />)
+      data.map((post, index) => <Card index={index} key={post._id} {...post} />)
     );
   }
 
@@ -120,12 +120,12 @@ const Home = () => {
     return items;
   };
 
-  console.log(currentPage)
-  console.log(allPosts, searchedResults)
+  // console.log(currentPage)
+  // console.log(allPosts, searchedResults)
 
   // Render the Home component
   return (
-    <section className='max-w-7xl mx-auto'>
+    <section className='max-w-7xl sm:mx-6 lg:mx-10 mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#1B2828] text-[32px]'>The Community Showcase</h1>
         <p className='mt-4 text-[#667e75] text-[16px] max-w-[500px]'>Discover sincere apologies from our community. These stories are meaningful and intimate, highlighting the significance of speaking up. We employ cutting-edge technology (ChatGTP + DALL-E + code) to ensure your voice remains anonymous, yet visible.
@@ -155,11 +155,11 @@ const Home = () => {
           <>
             {/* Show a heading if search text is present */}
             {searchText && (
-              <h2 className='font-medium text-[#667e75] text-xl mb-3'>
+              <h2 className='font-medium text-[#667e75] text-xl mb-20'>
                 Showing Resuls for <span className='text-[#1B2828]'>{searchText}</span>:
               </h2>
             )}
-            <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
+            <div className='mt-20 mx-2 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 xl:gap-20 lg:gap-14 md:gap-8 sm:gap-14 xs:gap-14 xs:mx-10 sm:mx-12 md:mx-0'>
               {/* Render cards based on whether search text is present */}
               {
                 searchText ? (

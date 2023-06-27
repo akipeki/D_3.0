@@ -3,6 +3,7 @@ import CreatePost from "./CreatePost";
 import About from "./About";
 import Apology from "./Apology";
 import Contact from "./Contact";
+import FAQ from "./FAQ";
 
 export {
     Home,
@@ -10,4 +11,5 @@ export {
     About,
     Apology,
     Contact,
+    FAQ,
 }

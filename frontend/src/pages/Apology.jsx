@@ -1,96 +1,82 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
+import { FacebookIcon, LinkedinIcon, TwitterIcon, WhatsappIcon } from "react-share";
+
 
 const Apology = () => {
+    const [apology, setApology] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const { id } = useParams();
+
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const title = 'I AM SORRY!';
+
+    useEffect(() => {
+        fetch(`https://dille.onrender.com/api/v1/post/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    setApology(data.data);
+                    setIsLoading(false);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                setIsLoading(false);
+            });
+    }, [id]);
+
+    // Loading State
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <div>
-            <section class="bg-white dark:bg-gray-900 antialiased">
-                <div class="max-w-screen-xl px-4 py-8 mx-auto lg:px-6 sm:py-16 lg:py-24">
-                    <div class="max-w-2xl mx-auto text-center">
-                        <h2 class="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl dark:text-white">
-                            Our work
-                        </h2>
-                        <p class="mt-4 text-base font-normal text-gray-500 sm:text-xl dark:text-gray-400">
-                            Crafted with skill and care to help our clients grow their business!
-                        </p>
+        <div className="p-5">
+            <div className="content flex flex-col items-center mx-auto px-2 py-2">
+                <img className="w-full pt-6 max-w-xl sm:px-0 md:px-10" src={apology.photo} alt="Apology Image" />
+                <p className="text-left mt-16 text-[#191919] max-w-xl w-full sm:px-0 md:px-10">{apology.generatedText}</p>
+                <h1 className="text-center mt-16 text-[#191919] font-medium mt-10 mb-20 mb-5 w-full">{apology.name}</h1>
+                <div className='flex my-8 gap-4'>
+                    <div className="some-network">
+                        <FacebookShareButton
+                            url={shareUrl}
+                            quote={title}>
+                            <FacebookIcon
+                                className='saturate-0 hover:saturate-100'
+                                size={28} round={true} />
+                        </FacebookShareButton>
                     </div>
-
-                    <div class="grid grid-cols-1 mt-12 text-center sm:mt-16 gap-x-20 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-                        <div class="space-y-4">
-                            <span
-                                class="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                                Alphabet Inc.
-                            </span>
-                            <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                                Official website
-                            </h3>
-                            <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                                Flowbite helps you connect with friends, family and communities of people who share your interests.
-                            </p>
-                            <a href="#" title=""
-                                class="text-white bg-primary-700 justify-center hover:bg-primary-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                role="button">
-                                View case study
-                                <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
-
-                        <div class="space-y-4">
-                            <span
-                                class="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                                Microsoft Corp.
-                            </span>
-                            <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                                Management system
-                            </h3>
-                            <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                                Flowbite helps you connect with friends, family and communities of people who share your interests.
-                            </p>
-                            <a href="#" title=""
-                                class="text-white bg-primary-700 justify-center hover:bg-primary-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                role="button">
-                                View case study
-                                <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
-
-                        <div class="space-y-4">
-                            <span
-                                class="bg-gray-100 text-gray-900 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                                Adobe Inc.
-                            </span>
-                            <h3 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">
-                                Logo design
-                            </h3>
-                            <p class="text-lg font-normal text-gray-500 dark:text-gray-400">
-                                Flowbite helps you connect with friends, family and communities of people who share your interests.
-                            </p>
-                            <a href="#" title=""
-                                class="text-white bg-primary-700 justify-center hover:bg-primary-800 inline-flex items-center  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                role="button">
-                                View case study
-                                <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
+                    <div className="some-network">
+                        <TwitterShareButton
+                            url={shareUrl}
+                            title={title}
+                            className="saturate-0 hover:saturate-100" >
+                            <TwitterIcon size={28} round={true} />
+                        </TwitterShareButton>
+                    </div>
+                    <div className="some-network">
+                        <WhatsappShareButton
+                            url={shareUrl}
+                            title={title}
+                            separator=":: "
+                            className="saturate-0 hover:saturate-100" >
+                            <WhatsappIcon size={28} round={true} />
+                        </WhatsappShareButton>
+                    </div>
+                    <div className="some-network">
+                        <LinkedinShareButton
+                            url={shareUrl}
+                            title='I am Sorry - The Website' >
+                            <LinkedinIcon className='saturate-0 hover:saturate-100' size={28} round={true} />
+                        </LinkedinShareButton>
                     </div>
                 </div>
-            </section>
-        </div>
-    )
-}
+            </div>
+            <Link to='/' className="btn-back sm:px-2 md:px-12 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px] font-bold pt-10">Back to Main</Link>
+        </div >
+    );
+};
 
-export default Apology
+export default Apology;

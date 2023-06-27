@@ -75,7 +75,8 @@ const CreatePost = () => {
              You're addressing an individual who is ${age} years old,
              and you're their ${relationship}. Please do not include any personal names or greetings/closings.
              The aim should be solely to offer a sincere apology.
-             Be sure to consider the seriousness of the issue and adjust your tone and language accordingly.`,
+             Be sure to consider the seriousness of the issue and adjust your tone and language accordingly.
+             If you notice text is written in any other langueage than English, translate it to English.`,
           }),
         });
 
@@ -258,7 +259,7 @@ const CreatePost = () => {
   ];
 
   return (
-    <section className='max-w-7xl mx-auto'>
+    <section className='max-w-7xl sm:mx-6 lg:mx-10 mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>Share your story</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w-[500px]'>Time to say I'm Sorry. In case you can no longer apologize to the person you have hurt directly, you can do it anonymously within our community.
@@ -361,7 +362,7 @@ const CreatePost = () => {
             handleChange={handleChange}
           />
 
-          <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
+          <div className='relative bg-[#fcfcfc] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
             {form.photo ? (
               <img
                 src={form.photo}
@@ -406,7 +407,7 @@ const CreatePost = () => {
           <p className='mt-2 text-[#666e75] text-[14px]'>** Once you have created the content you want, you can share it with others in the community **</p>
           <button
             type='submit'
-            className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center'
+            className='mt-3 mb-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center'
           >
             {loading ? 'Sharing...' : 'Share with the Community'}
           </button>
