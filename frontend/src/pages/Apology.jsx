@@ -65,13 +65,6 @@ const Apology = () => {
                             <WhatsappIcon size={28} round={true} />
                         </WhatsappShareButton>
                     </div>
-                    <div className="some-network">
-                        <LinkedinShareButton
-                            url={shareUrl}
-                            title='I am Sorry - The Website' >
-                            <LinkedinIcon className='saturate-0 hover:saturate-100' size={28} round={true} />
-                        </LinkedinShareButton>
-                    </div>
                 </div>
             </div>
             <Link to='/' className="btn-back sm:px-2 md:px-12 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px] font-bold pt-10">Back to Main</Link>
@@ -80,3 +73,15 @@ const Apology = () => {
 };
 
 export default Apology;
+
+
+/*
+
+                    <div className="some-network">
+                        <LinkedinShareButton
+                            url={shareUrl}
+                            title='I am Sorry - The Website' >
+                            <LinkedinIcon className='saturate-0 hover:saturate-100' size={28} round={true} />
+                        </LinkedinShareButton>
+                    </div>
+*/

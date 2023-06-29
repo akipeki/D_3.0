@@ -4,6 +4,7 @@ import About from "./About";
 import Apology from "./Apology";
 import Contact from "./Contact";
 import FAQ from "./FAQ";
+import NotFound from "./NotFound";
 
 export {
     Home,
@@ -12,4 +13,5 @@ export {
     Apology,
     Contact,
     FAQ,
+    NotFound,
 }

@@ -5,20 +5,25 @@ const About = () => {
     return (
         <section className='max-w-7xl mx-auto md:mx-8'>
             <div>
-                <h1 className='font-extrabold text-[#1B2828] text-[32px]'>About Project X</h1>
-                <p className='mt-4 text-[#667e75] text-[16px] max-w-[500px]'>Project X is an innovative solution designed to empower individuals, by providing a platform to express their apologies anonymously. Leveraging cutting-edge technology, including ChatGPT and DALL-E, Project X showcases the power of AI in fostering empathy and understanding within communities.
-                    <br /><br />
-                    Although we encourage face-to-face apologies, we also acknowledge the complexities of human emotions and situations. If direct confrontation isn't possible, Project X aims to be a solace, guiding individuals on their path to healing.</p>
+                <h1 className='font-extrabold text-[#1B2828] text-[32px]'>About this website</h1>
+                <h6 className='mt-4 text-[#666e75] font-bold text-[16px] max-w-[500px]'>Unspoken words, unheard apologies...</h6>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>Have you ever wished you could turn back time, mend a shattered bond, or utter those words you never said? This platform was born out of two profoundly emotional incidents that left a deep impact on my heart. The first, the untimely passing of a dear friend's father, whom he never got to express his gratitude and love to, leaving a void filled with unsaid words. The second, a complex global scenario where many of my Russian friends felt the need to apologize for circumstances beyond their control - the war started by a president they never voted.</p>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'> Inspired by these deeply personal incidents, this platform emerged as a sanctuary for unvoiced apologies and unexpressed sentiments. This platform is your safe space to express feelings anonymously when face-to-face apology isn't possible.</p>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>Our community thrives on sincerity, hosting heartfelt apologies powered by advanced technology like ChatGPT, DALL-E, ensuring anonymity yet allowing voices to be heard. The process is simple: fill forms, and let our AI assist you in sharing your apology. We respect your privacy, requiring no full names and pairing your message with an anonymous photo.</p>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>   Relieve your heart. This platform fosters healing and understanding. Experience the lightness that comes with expressing regret and seeking forgiveness.</p>
+
             </div>
 
             <div className='mt-8 pt-2'>
-                <h1 className='font-extrabold text-[#1B2828] text-[32px]'>About Person Y</h1>
-                <p className='mt-4 text-[#667e75] text-[16px] max-w-[500px]'>Person Y is the brains behind Project X. With a passion for leveraging technology to enhance human connectivity, Person Y has consistently worked to bridge the gap between AI and the human experience.
-                    <br /><br />
-                    This project reflects Person Y's commitment to creating a space for individuals to express their sentiments anonymously, yet meaningfully. To learn more about Person Y's projects and initiatives, you can visit their website:
-                    <a href="http://www.korea.fi" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'>www.korea.fi</a> </p>
+                <h1 className='font-extrabold text-[#1B2828] text-[32px]'>About Peki</h1>
+                <h6 className='mt-4 text-[#666e75] font-bold text-[16px] max-w-[500px]'>Fullstack developer and digital storyteller</h6>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>Peki Sinikoski is an fullstack developer and digital storyteller, known for his unique fusion of art, design, and technology.</p>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>With over two decades of experience in photography, Peki's work has reached global acclaim, featured in exhibitions on four continents and being published in medias like The New Yorker, Vogue, The Guardian, Le Monde, and Stern.</p>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>As a professional, Peki balances authenticity with a deep interest in artificial intelligence, crafting digital narratives that resonate with audiences. His skills extend beyond visual narratives, proficient in creating intricate digital experiences that encapsulate the spirit of his stories.</p>
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>To further explore Peki's work and delve into his digital world, visit his LinkedIn page or wepage:
+                    <a href="http://www.korea.fi" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'> www.korea.fi</a> He continues to invite new people into his journey, eager to share insights, experiences, and perspectives. 👋</p>
             </div>
-        </section>
+        </section >
     )
 }
 

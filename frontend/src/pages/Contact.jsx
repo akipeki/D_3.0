@@ -1,15 +1,37 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
     const form = useRef();
     const navigate = useNavigate();
     const [formStatus, setFormStatus] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [userInput, setUserInput] = useState({
+        user_name: '',
+        user_email: '',
+        message: ''
+    });
+
+    const handleInputChange = (e) => {
+        setUserInput({
+            ...userInput,
+            [e.target.name]: e.target.value,
+        });
+
+        if (userInput.user_name && userInput.user_email && userInput.message) {
+            setFormStatus('');
+        }
+    };
 
     const sendEmail = (e) => {
         e.preventDefault();
+
+        if (!userInput.user_name || !userInput.user_email || !userInput.message) {
+            setFormStatus('Please fill out all fields.');
+            return;
+        }
+
         setIsSubmitting(true);
 
         emailjs.sendForm(
@@ -21,33 +43,36 @@ const Contact = () => {
                 console.log(result.text);
                 form.current.reset(); // reset form fields
                 setFormStatus('Message sent successfully!');
+                setUserInput({
+                    user_name: '',
+                    user_email: '',
+                    message: ''
+                });
                 setTimeout(() => {
                     navigate('/');
-                }, 6000); // navigate to '/' after 6 seconds
+                }, 4000); // navigate to '/' after 4 seconds
             }, (error) => {
                 console.log(error.text);
-                setFormStatus('An error occurred, please try again.');
+                setFormStatus('Holy Crap! An error occurred, please try again.');
             })
             .finally(() => {
                 setIsSubmitting(false);
             });
     };
     return (
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl sm:mx-6 lg:mx-10 mx-auto">
 
             <h1 className="font-extrabold text-[#222328] text-[32px]">
                 Contact Us
             </h1>
 
-            <p className="mt-5 text-[#667e75] text-md">
+            <p className="mt-5 text-[#666e75] text-md">
                 We always appreciate hearing from our users. Whether you have a question,
                 want to give feedback, or simply want to share your experience with our product,
                 please feel free to drop us a line. We're here to listen and help.
             </p>
 
-            {formStatus && <p className="mt-5 text-[green] text-lg">{formStatus}</p>}
-
-            <form className="mt-16 max-w-3xl" ref={form} onSubmit={sendEmail}>
+            <form className="mt-12 max-w-3xl" ref={form} onSubmit={sendEmail}>
                 <div className="flex flex-col md:flex-row gap-5">
                     <div className="w-full md:w-1/2">
                         <label className="text-[#222328]">
@@ -56,7 +81,8 @@ const Contact = () => {
                         <input
                             type="text"
                             name="user_name"
-                            className="w-full py-2 px-3 mt-1 mb-2 border border-gray-300 rounded-md" />
+                            className="w-full py-2 px-3 mt-1 mb-2 border border-gray-300 rounded-md"
+                            onChange={handleInputChange} />
                     </div>
 
                     <div className="w-full md:w-1/2">
@@ -66,7 +92,8 @@ const Contact = () => {
                         <input
                             type="email"
                             name="user_email"
-                            className="w-full py-2 px-3 mt-1 mb-2 border border-gray-300 rounded-md" />
+                            className="w-full py-2 px-3 mt-1 mb-2 border border-gray-300 rounded-md"
+                            onChange={handleInputChange} />
                     </div>
                 </div>
                 <div className="mt-2">
@@ -75,18 +102,30 @@ const Contact = () => {
                     </label>
                     <textarea
                         name="message"
-                        className="w-full py-2 px-3 mt-1 mb-2 border border-gray-300 rounded-md" />
+                        className="w-full py-2 px-3 mt-1 mb-2 border border-gray-300 rounded-md"
+                        onChange={handleInputChange} />
                 </div>
-                <input
-                    type="submit"
-                    value={isSubmitting ? "Sent" : "Send"}
-                    className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center hover:ease-in duration-300 hover:bg-[green]"
-                    disabled={isSubmitting} />
+                <div className="mt-2">
+                    {!isSubmitting && formStatus !== 'Message sent successfully!' &&
+                        <input
+                            type="submit"
+                            value="Send"
+                            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center hover:ease-in duration-300 hover:bg-[green]"
+                            disabled={isSubmitting}
+                        />
+                    }
+                    {isSubmitting && !formStatus &&
+                        <button disabled={true} className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center">
+                            Sending
+                            <span className="loader">.<span>.</span><span>.</span></span>
+                        </button>
+                    }
+                    {formStatus === 'Message sent successfully!' && <p className="mt-3 text-[16px] text-green-500 font-medium">{formStatus}</p>}
+                </div>
+                {formStatus === 'Please fill out all fields.' && <p className="mt-8 text-[16px] text-red-600 font-medium">{formStatus}</p>}
             </form>
-            <div className='mt-12'>
-                <Link to='/' className="btn-back text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px] font-bold pt-10">Back to Main</Link>
-            </div>
         </div>
+
     );
 };
 

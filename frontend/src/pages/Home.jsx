@@ -128,7 +128,7 @@ const Home = () => {
     <section className='max-w-7xl sm:mx-6 lg:mx-10 mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#1B2828] text-[32px]'>The Community Showcase</h1>
-        <p className='mt-4 text-[#667e75] text-[16px] max-w-[500px]'>Discover sincere apologies from our community. These stories are meaningful and intimate, highlighting the significance of speaking up. We employ cutting-edge technology (ChatGTP + DALL-E + code) to ensure your voice remains anonymous, yet visible.
+        <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>Discover sincere apologies from our community. These stories are meaningful and intimate, highlighting the significance of speaking up. We employ cutting-edge technology (ChatGTP + DALL-E + code) to ensure your voice remains anonymous, yet visible.
           <br /><br />
           If circumstances permit, we encourage you to offer your apologies directly to the person you have hurt. If you can't do that, may this platform provide solace as you navigate the path towards healing.</p>
       </div>
@@ -155,7 +155,7 @@ const Home = () => {
           <>
             {/* Show a heading if search text is present */}
             {searchText && (
-              <h2 className='font-medium text-[#667e75] text-xl mb-20'>
+              <h2 className='font-medium text-[#666e75] text-xl mb-20'>
                 Showing Resuls for <span className='text-[#1B2828]'>{searchText}</span>:
               </h2>
             )}
@@ -177,7 +177,7 @@ const Home = () => {
             </div>
             <div className='flex justify-center items-center mt-12'>
               <button
-                style={{ fontSize: '20px ', color: '#667e75', }}
+                style={{ fontSize: '20px ', color: '#666e75', }}
                 className={`px-2 py-1 mx-1 border border-none rounded-md focus:outline-none ${currentPage === 1 ? 'cursor-not-allowed' : ''}`}
                 onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))}
               >
@@ -187,8 +187,8 @@ const Home = () => {
               {searchText ? renderPageNumbers(searchedResults) : renderPageNumbers(allPosts)}
 
               <button
-                style={{ fontSize: '20px', color: '#667e75', }}
-                className={`text-#667e75 px-2 py-1 mx-1 border border-none rounded-md focus:outline-none ${currentPage === (searchText ? Math.ceil(searchedResults.length / itemsPerPage) : Math.ceil(allPosts.length / itemsPerPage)) ? 'cursor-not-allowed' : ''}`}
+                style={{ fontSize: '20px', color: '#666e75', }}
+                className={`text-#666e75 px-2 py-1 mx-1 border border-none rounded-md focus:outline-none ${currentPage === (searchText ? Math.ceil(searchedResults.length / itemsPerPage) : Math.ceil(allPosts.length / itemsPerPage)) ? 'cursor-not-allowed' : ''}`}
                 onClick={() => setCurrentPage((page) => Math.min(page + 1, (searchText ? Math.ceil(searchedResults.length / itemsPerPage) : Math.ceil(allPosts.length / itemsPerPage))))}
               >
                 {'>'}
