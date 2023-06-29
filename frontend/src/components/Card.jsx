@@ -11,7 +11,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
 
     // define the screen size you want to target
     const isTabletOrMobileDevice = useMediaQuery({
-        query: '(max-device-width: 768px)'
+        query: '(max-device-width: 168px)'
     });
 
     useEffect(() => {
@@ -50,6 +50,9 @@ const Card = ({ _id, name, photo, generatedText }) => {
                     src={photo}
                     alt={generatedText}
                 />
+                {isTabletOrMobileDevice && (
+                    <div className='triangle'></div>
+                )}
                 <div className={`absolute top-0 left-0 right-0 bottom-0 flex-col items-center justify-center p-4 rounded-md ${isTabletOrMobileDevice ? 'flex' : 'hidden group-hover:flex bg-white opacity-70'}`}>
                     {!isTabletOrMobileDevice && (
                         <div className='md:overflow-y-auto md:scrollbar-padding'>
@@ -66,15 +69,6 @@ const Card = ({ _id, name, photo, generatedText }) => {
                             <p className='text-black text-sm'>{name}</p>
                         </div>
                     )}
-                    {isTabletOrMobileDevice && (
-                        <button
-                            type='button'
-                            onClick={() => setShowText(!showText)}
-                            className='absolute bottom-{50%} left-1/2 transform -translate-x-1/2 px-6 py-2 bg-red-500 opacity-50 text-white rounded-md cursor-pointer transition-all duration-300 ease-in-out'
-                        >
-                            {showText ? "Hide Details" : "Read More"}
-                        </button>
-                    )}
                     <button type='button' onClick={() => downloadImage(_id, photo)} className='outline-none bg-transparent border-none'>
                     </button>
                 </div>
@@ -82,5 +76,4 @@ const Card = ({ _id, name, photo, generatedText }) => {
         </div>
     )
 }
-
 export default Card;
