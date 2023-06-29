@@ -7,6 +7,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
     const cardRef = useRef();
     const [fontSize, setFontSize] = useState('text-sm');
     const [showText, setShowText] = useState(false);
+    const [cardSize, setCardSize] = useState(null);
 
     // define the screen size you want to target
     const isTabletOrMobileDevice = useMediaQuery({
@@ -14,23 +15,32 @@ const Card = ({ _id, name, photo, generatedText }) => {
     });
 
     useEffect(() => {
-        // function to determine font size based on card width
-        const determineFontSize = () => {
-            const width = cardRef.current.offsetWidth;
-            if (width < 300) {
-                setFontSize('text-xs');
-            } else if (width < 600) {
-                setFontSize('text-sm');
-            } else {
-                setFontSize('text-md');
+        function updateCardSize() {
+            if (cardRef.current) {
+                const newCardSize = cardRef.current.offsetWidth;
+                console.log("New card size:", newCardSize); // log the card size
+                setCardSize(newCardSize);
             }
-        };
-        determineFontSize();
-        // listen for window resize events
-        window.addEventListener('resize', determineFontSize);
-        // cleanup function
-        return () => window.removeEventListener('resize', determineFontSize);
-    }, []); // empty dependency array, so this effect only runs once
+        }
+        updateCardSize();
+        window.addEventListener('resize', updateCardSize);
+        return () => window.removeEventListener('resize', updateCardSize);
+    }, []);
+
+    useEffect(() => {
+        let newSize = 'text-sm';
+        if (cardSize < 200) {
+            newSize = 'text-xs';
+        } else if (cardSize < 340) {
+            newSize = 'text-sm';
+        } else if (cardSize < 500) {
+            newSize = 'text-md';
+        } else {
+            newSize = 'text-lg';
+        }
+        console.log("New font size:", newSize); // log the font size
+        setFontSize(newSize);
+    }, [cardSize]);
 
     return (
         <div ref={cardRef} className='card rounded-xl group relative shadow-card hover:shadow-cardhover my-4 xs:my-0'>
@@ -69,14 +79,4 @@ const Card = ({ _id, name, photo, generatedText }) => {
     )
 }
 
-export default Card
-
-
-
-
-    // when commenting out this one below, I also removed index from Card
-
-/* const wordArray = generatedText.split(' ')
-const wordCount = ((index + 1) % 7 === 0 || index === 0) ? wordArray.length : 12
-wordArray.length = wordArray.length < wordCount ? wordArray.length : wordCount
-const shortText = wordArray.join(' ') */
+export default Card;

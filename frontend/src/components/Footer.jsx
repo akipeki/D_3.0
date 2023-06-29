@@ -9,7 +9,7 @@ const Footer = () => {
                         <img src={logo} alt="logo" className='w-24 cursor-pointer object-contain pt-5 pb-3' />
                     </a>
                 </div>
-                <ul className="flex flex-row flex-wrap justify-center items-center mb-4 text-sm font-medium text-[#8a8a8a] ">
+                <ul className="nav-links flex flex-col sm:flex-row flex-wrap justify-center items-center mb-4 text-xs sm:text-sm font-medium text-[#8a8a8a] ">
                     <li>
                         <a href="/" className="mx-4 text-[#8a8a8a] cursor-pointer underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px]">Home</a>
                     </li>

@@ -14,7 +14,7 @@ const FAQ = () => {
 
                 <Accordion >
 
-                    <Accordion.Panel  >
+                    <Accordion.Panel>
                         <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
                             Who have created this website?
                         </Accordion.Title>

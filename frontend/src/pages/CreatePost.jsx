@@ -59,8 +59,8 @@ const CreatePost = () => {
   };
 
 
-  const generateMessage = async (prompt, tone, age, relationship,) => {
-    if (prompt && tone && age && relationship) {
+  const generateMessage = async (prompt, tone, age, relationship, gender) => {
+    if (prompt && tone && age && relationship && gender) {
       try {
         const response = await fetch('https://dille.onrender.com/api/v1/chat/completions', {
           method: 'POST',
@@ -68,15 +68,16 @@ const CreatePost = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: `As a competent writer, your task is to create a short yet
-             compelling ${tone} apology within the constraints of 3-6 sentences.
-             Your language should be straightforward and understandable.
-             Base your apology on this statement: [ ${prompt} ].
-             You're addressing an individual who is ${age} years old,
-             and you're their ${relationship}. Please do not include any personal names or greetings/closings.
-             The aim should be solely to offer a sincere apology.
-             Be sure to consider the seriousness of the issue and adjust your tone and language accordingly.
-             If you notice text is written in any other langueage than English, translate it to English.`,
+            prompt: `As a ${tone} ${relationship}, your task is to create a ${tone} apology within 4-5 sentences.
+            Your language should be straightforward and understandable.
+            Your apology should express deep regret and a plea for forgiveness.
+            Base your apology on this statement: [ ${prompt} ].
+            You're addressing an individual who is ${age} years old and of ${gender},
+            and you're their ${relationship}. Please do not include any personal names or greetings/closings.
+            The aim should be solely to offer a sincere apology.
+            Before giving your answer, analyze the ${prompt}, ${tone}, and ${relationship} 
+            to consider the seriousness of the issue and adjust your tone and language accordingly.
+            If you notice the text is written in any language other than English, translate it to English.`,
           }),
         });
 
@@ -200,7 +201,7 @@ const CreatePost = () => {
 
   const ageOptions = [
     "1-3 years",
-    "5-8 years",
+    "4-8 years",
     "9-12 years",
     "13-15 years",
     "16-18 years",
@@ -208,28 +209,29 @@ const CreatePost = () => {
     "23–28 years",
     "29–34 years",
     "35–40 years",
-    "40–50 years",
-    "50–60 years",
-    "70–80 years",
-    "80–90 years",
-    "90–100 years",
+    "41–50 years",
+    "51–60 years",
+    "61–70 years",
+    "71–80 years",
+    "81–90 years",
+    "91–100 years",
     "100+ years"
   ];
 
   const genderOptions = ['girl', 'boy', 'man', 'woman', 'child', 'adult'];
 
   const toneOptions = [
-    "Sincere",
+    "Serious",
     "Formal",
     "Casual",
     "Dramatic",
     "Regretful",
     "Depressed",
     "Heartfelt",
-    "Genuine",
+    "Comforting",
+    "Hopeful",
     "Hysteric",
     "Empathetic",
-    "Straightforward"
   ];
 
   const relationshipOptions = [
@@ -255,7 +257,7 @@ const CreatePost = () => {
     "Mentee",
     "Sibling",
     "Special Connection",
-    "We didn't have any connection",
+    "Fellow human being",
   ];
 
   return (
@@ -289,7 +291,7 @@ const CreatePost = () => {
               labelName="I want to apology a"
               type="select"
               name="gender"
-              placeholder="Select Gender"
+              placeholder="Gender"
               value={form.gender}
               handleChange={handleChange}
               options={genderOptions}
@@ -301,7 +303,7 @@ const CreatePost = () => {
               labelName="That person was"
               type='select'
               name='age'
-              placeholder='Select Age'
+              placeholder='Age'
               value={form.age}
               handleChange={handleChange}
               options={ageOptions}
@@ -326,7 +328,7 @@ const CreatePost = () => {
               labelName="Tone of Apology"
               type="select"
               name="tone"
-              placeholder="Select Tone"
+              placeholder="Tone"
               value={form.tone}
               handleChange={handleChange}
               options={toneOptions}
@@ -334,10 +336,10 @@ const CreatePost = () => {
 
             <FormField
               style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
-              labelName="Your Connection to the Person"
+              labelName="Your Relationship"
               type="select"
               name="relationship"
-              placeholder="Select Relationship"
+              placeholder="Relationship"
               value={form.relationship}
               handleChange={handleChange}
               options={relationshipOptions}
@@ -409,7 +411,7 @@ const CreatePost = () => {
             type='submit'
             className='mt-3 mb-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center'
           >
-            {loading ? 'Sharing...' : 'Share with the Community'}
+            {loading ? 'Sharing... with the Community' : 'Share with the Community'}
           </button>
         </div>
       </form>
