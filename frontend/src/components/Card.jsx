@@ -18,7 +18,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
         function updateCardSize() {
             if (cardRef.current) {
                 const newCardSize = cardRef.current.offsetWidth;
-                console.log("New card size:", newCardSize); // log the card size
+                //   console.log("New card size:", newCardSize); // log the card size
                 setCardSize(newCardSize);
             }
         }
@@ -38,7 +38,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
         } else {
             newSize = 'text-lg';
         }
-        console.log("New font size:", newSize); // log the font size
+        //   console.log("New font size:", newSize); // log the font size
         setFontSize(newSize);
     }, [cardSize]);
 
@@ -50,23 +50,27 @@ const Card = ({ _id, name, photo, generatedText }) => {
                     src={photo}
                     alt={generatedText}
                 />
-                <div className={`absolute top-0 left-0 right-0 bottom-0 ${isTabletOrMobileDevice ? '' : 'group-hover:flex'} flex-col items-center justify-center hidden bg-white opacity-70 p-4 rounded-md`}>
-                    <div className='md:overflow-y-auto md:scrollbar-padding'>
-                        <p className={`text-black ${fontSize} overflow-y-auto prompt mt-4 mb-2 mx-4 text-center`}>{generatedText}</p>
-                    </div>
+                <div className={`absolute top-0 left-0 right-0 bottom-0 flex-col items-center justify-center p-4 rounded-md ${isTabletOrMobileDevice ? 'flex' : 'hidden group-hover:flex bg-white opacity-70'}`}>
+                    {!isTabletOrMobileDevice && (
+                        <div className='md:overflow-y-auto md:scrollbar-padding'>
+                            <p className={`text-black ${fontSize} overflow-y-auto prompt mt-4 mb-2 mx-4 text-center`}>{generatedText}</p>
+                        </div>
+                    )}
                     <div className='mt-5 flex justify-between items-center gap-2 w-full'>
                     </div>
-                    <div className='flex items-center gap-2'>
-                        <div className='w-7 h-7 rounded-full object-cover bg-[green] flex justify-center items-center text-white text-xs font-bold'>
-                            {name[0]}
+                    {!isTabletOrMobileDevice && (
+                        <div className='flex items-center gap-2'>
+                            <div className='w-7 h-7 rounded-full object-cover bg-[green] flex justify-center items-center text-white text-xs font-bold'>
+                                {name[0]}
+                            </div>
+                            <p className='text-black text-sm'>{name}</p>
                         </div>
-                        <p className='text-black text-sm'>{name}</p>
-                    </div>
+                    )}
                     {isTabletOrMobileDevice && (
                         <button
                             type='button'
                             onClick={() => setShowText(!showText)}
-                            className='absolute bottom-2.5 left-1/2 transform -translate-x-1/2 px-5 py-2 bg-red-500 text-white rounded-md cursor-pointer transition-all duration-300 ease-in-out md:hidden'
+                            className='absolute bottom-{50%} left-1/2 transform -translate-x-1/2 px-5 py-2 bg-red-500 opacity-70 text-white rounded-md cursor-pointer transition-all duration-300 ease-in-out'
                         >
                             {showText ? "Hide Details" : "Read More"}
                         </button>

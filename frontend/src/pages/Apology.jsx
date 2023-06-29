@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useParams, Link } from 'react-router-dom';
-import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
-import { FacebookIcon, LinkedinIcon, TwitterIcon, WhatsappIcon } from "react-share";
+import { Loader } from '../components';
+import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon, WhatsappIcon } from "react-share";
+
 
 
 const Apology = () => {
@@ -11,6 +14,10 @@ const Apology = () => {
 
     const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
     const title = 'I AM SORRY!';
+
+    const isTabletOrMobileDevice = useMediaQuery({
+        query: '(max-device-width: 1023px)'
+    });
 
     useEffect(() => {
         fetch(`https://dille.onrender.com/api/v1/post/${id}`)
@@ -29,14 +36,17 @@ const Apology = () => {
 
     // Loading State
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div><Loader /></div>;
     }
 
     return (
-        <div className="p-5">
+        <div className="py-6 px-2 sm:px-6">
+            {isTabletOrMobileDevice && (
+                <Link to='/' className="btn-back sm:px-2 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px] font-bold pt-10">Back to Main</Link>
+            )}
             <div className="content flex flex-col items-center mx-auto px-2 py-2">
-                <img className="w-full pt-6 max-w-xl sm:px-0 md:px-10" src={apology.photo} alt="Apology Image" />
-                <p className="text-left mt-16 text-[#191919] max-w-xl w-full sm:px-0 md:px-10">{apology.generatedText}</p>
+                <img className="w-full pt-12 sm:pt-18 pb-0 sm:pt-6 max-w-lg sm:px-0 md:px-10" src={apology.photo} alt="Apology Image" />
+                <p className="text-left mt-16 text-[#191919] max-w-lg w-full sm:px-0 md:px-10">{apology.generatedText}</p>
                 <h1 className="text-center mt-16 text-[#191919] font-medium mt-10 mb-20 mb-5 w-full">{apology.name}</h1>
                 <div className='flex my-8 gap-4'>
                     <div className="some-network">
