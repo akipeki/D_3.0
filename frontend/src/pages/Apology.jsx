@@ -16,7 +16,7 @@ const Apology = () => {
     const title = 'I AM SORRY!';
 
     const isTabletOrMobileDevice = useMediaQuery({
-        query: '(max-device-width: 1023px)'
+        query: '(max-device-width: 768px)'
     });
 
     useEffect(() => {
@@ -45,9 +45,9 @@ const Apology = () => {
                 <Link to='/' className="btn-back sm:px-2 text-[#8a8a8a] underline-offset-8 hover:underline hover:text-[#191919]  hover:underline-offset-8 hover:decoration-[3px] font-bold pt-10">Back to Main</Link>
             )}
             <div className="content flex flex-col items-center mx-auto px-2 py-2">
-                <img className="w-full pt-12 sm:pt-18 pb-0 sm:pt-6 max-w-lg sm:px-0 md:px-10" src={apology.photo} alt="Apology Image" />
-                <p className="text-left mt-16 text-[#191919] max-w-lg w-full sm:px-0 md:px-10">{apology.generatedText}</p>
-                <h1 className="text-center mt-16 text-[#191919] font-medium mt-10 mb-20 mb-5 w-full">{apology.name}</h1>
+                <img className="w-full pt-12 sm:pt-18 md:pt-20 pb-0 sm:pt-6 max-w-lg sm:px-0 md:px-10" src={apology.photo} alt="Apology Image" />
+                <p className="text-left mt-16 md:mt-12 text-[#191919] text-center max-w-lg w-full sm:px-0 md:px-10">{apology.generatedText}</p>
+                <h1 className="text-center mt-16 md:mt-12 text-[#191919] font-medium mt-10 mb-20 mb-5 w-full">{apology.name}</h1>
                 <div className='flex my-8 gap-4'>
                     <div className="some-network">
                         <FacebookShareButton

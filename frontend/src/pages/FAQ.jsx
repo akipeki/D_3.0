@@ -19,8 +19,8 @@ const FAQ = () => {
                             Who have created this website?
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
-                            <p className="className='mt-4 text-[#1B2828] text-[16px] ">
-                                <p>
+                            <p className="mt-4 text-[#1B2828] text-[16px] ">
+                                <p className="mt-6">
                                     This website is designed, coded, and created by Peki. <b>Peki Sinikoski</b> is an <b>fullstack developer</b> and digital <b>storyteller</b>, known for his unique fusion of art, design, and technology.
                                 </p>
                             </p>
@@ -42,7 +42,7 @@ const FAQ = () => {
                                         Peki Sinikoski - LinkedIn
                                     </p>
                                 </a>
-                                <p className='mt-4'>
+                                <p className='mt-4 mb-6'>
                                     He continues to invite new people into his journey, eager to share insights, experiences, and perspectives. 👋
                                 </p>
                             </p>
@@ -56,7 +56,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-4'>
+                                <p className="mt-6">
                                     This platform is created for saying 'I'm Sorry.' Peki's idea was to support individuals in voicing their silent words and to illuminate our unvoiced apologies, while preserving anonymity.
                                 </p>
                             </p>
@@ -77,7 +77,7 @@ const FAQ = () => {
                                 <p className='mt-4'>
                                     Our community thrives on sincerity, hosting heartfelt apologies powered by advanced technology like ChatGPT, DALL-E, ensuring anonymity yet allowing voices to be heard. The process is simple: fill forms, and let our AI assist you in sharing your apology. We respect your privacy, requiring no full names and pairing your message with an anonymous photo.
                                 </p>
-                                <p className='mt-4'>
+                                <p className='mt-4 mb-6'>
                                     Relieve your heart. This platform fosters healing and understanding. Experience the lightness that comes with expressing regret and seeking forgiveness."
                                 </p>
                             </p>
@@ -91,7 +91,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p>
+                                <p className="mt-6">
                                     Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons,
                                     dropdowns, modals, navbars, and more.
                                 </p>
@@ -108,7 +108,7 @@ const FAQ = () => {
                                         get started
                                     </p>
                                 </a>
-                                <p>
+                                <p className='mt-4 mb-6'>
                                     and start developing websites even faster with components on top of Tailwind CSS.
                                 </p>
                             </p>
@@ -125,7 +125,7 @@ const FAQ = () => {
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
 
-                                <p className='mt-4'>
+                                <p className="mt-6">
                                     We truly hope even this website, using AI can help many people, but to give you more general answer AI has already started to redefine many aspects of our personal life. At present, it can:
                                 </p>
 
@@ -143,7 +143,7 @@ const FAQ = () => {
                                 <p className='mt-0'>・ Making autonomous vehicles a mainstream reality</p>
                                 <p className='mt-0'>・ Providing advanced personal finance management</p>
                                 <p className='mt-0'>・ Facilitating immersive learning through virtual reality</p>
-                                <p className='mt-0'>・ Enhancing remote work with sophisticated collaborative tools</p>
+                                <p className='mt-0 mb-6'>・ Enhancing remote work with sophisticated collaborative tools</p>
                             </p>
                         </Accordion.Content>
                     </Accordion.Panel>
@@ -155,7 +155,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-8'>
+                                <p className="mt-6">
                                     In the foreseeable future, AI could take on even larger tasks. It holds enormous potential to
                                     significantly enhance both individual wellbeing and global prosperity. Let's imagine a future where
                                     AI is not just an aide but a key participant in our collective journey, enabling us to realize dreams we once deemed impossible:
@@ -197,7 +197,7 @@ const FAQ = () => {
                                 <p className='mt-4'>
                                     💡 Pioneering Energy Abundance: AI stands to revolutionize renewable energy, enhancing efficiency and making it more widespread, thereby leading us into an era of energy abundance.
                                 </p>
-                                <p className='mt-4'>
+                                <p className='mt-4 mb-6'>
                                     So, in essence, AI can be a game-changer, helping us in addressing some of the most pressing challenges faced by humanity and our planet. The potential benefits are immense, and they paint a hopeful picture of a future shaped by our partnership with AI.
                                 </p>
                             </p>
@@ -210,7 +210,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-4'>
+                                <p className="mt-6">
                                     While AI presents a promising future, it's crucial to remember that we are still in the early
                                     stages of understanding its long-term effects, especially on younger generations.
                                     The potential benefits are immense, but so are the potential pitfalls. Like any powerful tool,
@@ -248,7 +248,7 @@ const FAQ = () => {
                                     and encourage collaboration among all stakeholders. Shaping the narrative of AI's future will require the wisdom of researchers,
                                     artists, philosophers, and other experts from diverse fields. As we grapple with the expanding role of AI in our lives, ethical considerations will undoubtedly be at the forefront.
                                 </p>
-                                <p className='mt-4'>
+                                <p className='mt-4 mb-6'>
                                     As we spend more and more time with AI and focus on directing AI for the greater good, we must ensure that we don't let
                                     our human cognitive processes be influenced by AI's machine-like logic. The future is not just for specialists but for
                                     multi-talented creatives who can bridge different disciplines and offer a broader viewpoint.
@@ -266,7 +266,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-4'>
+                                <p className="mt-6">
                                     Wow, what an interesting question! Let's consider a different perspective.
                                     Traditional photography involves a camera, where light is captured on film to produce an image of the real world.
                                     Or, to be more precise, a framed slice of reality that often reveals as much about the photographer as it does
@@ -284,7 +284,7 @@ const FAQ = () => {
                                     they also capture the real stories, emotions, and apologies from people like you and me.
                                 </p>
 
-                                <p className='mt-4'>
+                                <p className='mt-4 mb-6'>
                                     From its inception in 1839, photography has undergone a tremendous transformation – from light-reactive glass plates, to film, to digital,
                                     and now to AI-rendered images. Yet, in spite of these advancements, our arsenal of tools continues to respect the old-school techniques.
                                     The real enchantment stems from our imaginative creativity, both as creators and spectators.
@@ -306,7 +306,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p>
+                                <p className="mt-6">
                                     Rude language.
                                 </p>
                             </p>
@@ -337,7 +337,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-4'>
+                                <p className="mt-6 mb-6">
                                     In this exciting era of AI, we often stumble upon intriguing questions, don't we?
                                     Well, just to set your mind at ease, the copyright of this lovely site belongs to its creator,
                                     Peki, who breathed life into it with his code. But hey, don't let that stop you from sharing
@@ -353,7 +353,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-4'>
+                                <p className="mt-6">
                                     Indeed! Just as we occasionally dust off our bookshelves at home,
                                     we also take care of this virtual platform. This might include refining
                                     any unconventional text that our AI companions produce - they're still
@@ -361,7 +361,7 @@ const FAQ = () => {
                                     any content that could potentially pose harm to any individual or group.
                                     Our aim is to create a nurturing and welcoming digital habitat for all. 😊
                                 </p>
-                                <p className='mt-4'>
+                                <p className='mt-4 mb-6'>
                                     Do remember, this site is still in its testing phase, so there may be moments
                                     when we need to adjust or take down something due to a technical hiccup.
                                     Regardless of the challenge, you can count on us to always do our best!
@@ -377,7 +377,7 @@ const FAQ = () => {
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <p className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='my-4'>
+                                <p className="mt-6 mb-6">
                                     Seeking the meaning of life? While we can't make any guarantees, we're pretty confident that venues more suited than our FAQ section exist for this eternal riddle. 😉😃  That being said, never forget that you are a one-of-a-kind individual, an irreplaceable part of the grand cosmic ballet, and yes, we truly adore you. ❤️
                                 </p>
                             </p>

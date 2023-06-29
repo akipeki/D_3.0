@@ -11,7 +11,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
 
     // define the screen size you want to target
     const isTabletOrMobileDevice = useMediaQuery({
-        query: '(max-device-width: 1023px)'
+        query: '(max-device-width: 768px)'
     });
 
     useEffect(() => {
@@ -70,7 +70,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
                         <button
                             type='button'
                             onClick={() => setShowText(!showText)}
-                            className='absolute bottom-{50%} left-1/2 transform -translate-x-1/2 px-5 py-2 bg-red-500 opacity-70 text-white rounded-md cursor-pointer transition-all duration-300 ease-in-out'
+                            className='absolute bottom-{50%} left-1/2 transform -translate-x-1/2 px-6 py-2 bg-red-500 opacity-50 text-white rounded-md cursor-pointer transition-all duration-300 ease-in-out'
                         >
                             {showText ? "Hide Details" : "Read More"}
                         </button>
