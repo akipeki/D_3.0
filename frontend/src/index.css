@@ -93,7 +93,7 @@
 }
 
 .innerWrapper {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -173,9 +173,16 @@
 }
 
 
-@media screen and (min-width: 1600px) {
+@media (max-width: 1460px) {
     .innerWrapper {
         width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1461px) {
+    .innerWrapper {
+        width: 80%;
         margin: 0 auto;
     }
 }

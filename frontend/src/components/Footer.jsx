@@ -25,7 +25,7 @@ const Footer = () => {
                 </ul>
                 <ul className="flex justify-center sm:mt-4 md:mt-0 pb-4 cursor-pointer items-center text-sm font-medium text-[#8a8a8a] ">
                     <li>
-                        <a href="https://instagram.com" target='_blank' rel='noreferrer noopener' className="mx-4 cursor-pointer hover:underline hover:text-[#191919]">
+                        <a href="https://instagram.com/iamsorry_website/" target='_blank' rel='noreferrer noopener' className="mx-4 cursor-pointer hover:underline hover:text-[#191919]">
                             <img
                                 src={instagram}
                                 alt="Instagram"

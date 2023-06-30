@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
 
+
 const CreatePost = () => {
   const navigate = useNavigate();
-
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 768px)'
+  });
   const [form, setForm] = useState({
     name: '',
     prompt: '',
@@ -218,7 +222,14 @@ const CreatePost = () => {
     "100+ years"
   ];
 
-  const genderOptions = ['girl', 'boy', 'man', 'woman', 'child', 'adult'];
+  const genderOptions = [
+    'girl',
+    'boy',
+    'man',
+    'woman',
+    'child',
+    'teenager',
+    'adult'];
 
   const toneOptions = [
     "Serious",
@@ -266,50 +277,37 @@ const CreatePost = () => {
         <h1 className='font-extrabold text-[#222328] text-[32px]'>Share your story</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w-[500px]'>Time to say I'm Sorry. In case you can no longer apologize to the person you have hurt directly, you can do it anonymously within our community.
           <br /><br />
-          Please fill out the provided forms. With a little help from AI, we can share your apology anonymously with others.
-          To protect your identity, we kindly ask that you do not reveal your full name.
-          Additionally, we will create an anonymous photo to accompany your heartfelt apology.
+          Please fill out the provided forms. With a little help from AI, we will create an anonymous photo to accompany the heartfelt apology.
+          To protect your identity, we kindly ask you not to reveal your full name, so you can share the apology with others.
           <br /><br />
-          Let it all out. ❤️ Trust us, this will make you feel better. ⭐️
+          Let it all out. ❤️ Trust us, this will make you feel better ⭐️
         </p>
       </div>
 
       <form className='mt-16 max-w-3xl' onSubmit={handleSubmit}>
-        <div className='flex flex-col gap-5'>
+        <div className='flex flex-col gap-5 mb-14 max-w-[500px]'>
           <FormField
-            labelName='How would you like to be named here?'
-            type='text'
-            name='name'
-            placeholder='Ex., Alexander'
-            value={form.name}
+
+            labelName="I want to apologise to a"
+            type="select"
+            name="gender"
+            placeholder="Gender"
+            value={form.gender}
             handleChange={handleChange}
+            options={genderOptions}
           />
 
-          <div className="flex justify-between gap-4">
-            <FormField
-              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
-              labelName="I want to apology a"
-              type="select"
-              name="gender"
-              placeholder="Gender"
-              value={form.gender}
-              handleChange={handleChange}
-              options={genderOptions}
-            />
 
+          <FormField
 
-            <FormField
-              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
-              labelName="That person was"
-              type='select'
-              name='age'
-              placeholder='Age'
-              value={form.age}
-              handleChange={handleChange}
-              options={ageOptions}
-            />
-
-          </div>
+            labelName="During that time that person was"
+            type='select'
+            name='age'
+            placeholder='Age'
+            value={form.age}
+            handleChange={handleChange}
+            options={ageOptions}
+          />
 
           <FormField
             labelName="I want to apologize that..."
@@ -318,36 +316,36 @@ const CreatePost = () => {
             placeholder='Ex., Not being there when you needed a friend the most'
             value={form.prompt}
             handleChange={handleChange}
-            isSurpriseMe
+            isSurpriseMe={!isTabletOrMobileDevice}  // SurpriseMe hidden on mobile devices
             handleSurpriseMe={handleSurpriseMe}
           />
 
-          <div className="flex justify-between gap-4">
-            <FormField
-              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
-              labelName="Tone of Apology"
-              type="select"
-              name="tone"
-              placeholder="Tone"
-              value={form.tone}
-              handleChange={handleChange}
-              options={toneOptions}
-            />
-
-            <FormField
-              style={{ flexGrow: 1, minWidth: 'calc(50% - 20px)' }}
-              labelName="Your Relationship"
-              type="select"
-              name="relationship"
-              placeholder="Relationship"
-              value={form.relationship}
-              handleChange={handleChange}
-              options={relationshipOptions}
-            />
-          </div>
 
           <FormField
-            labelName='Description of the Person'
+
+            labelName="Tone of your apology"
+            type="select"
+            name="tone"
+            placeholder="Tone"
+            value={form.tone}
+            handleChange={handleChange}
+            options={toneOptions}
+          />
+
+          <FormField
+
+            labelName="Your relationship to that person"
+            type="select"
+            name="relationship"
+            placeholder="Relationship"
+            value={form.relationship}
+            handleChange={handleChange}
+            options={relationshipOptions}
+          />
+
+
+          <FormField
+            labelName='Description of that person'
             type='text'
             name='personDescription'
             placeholder='Ex., Cute and kind. Friendly eyes. Always helping for others.'
@@ -356,7 +354,7 @@ const CreatePost = () => {
           />
 
           <FormField
-            labelName='City and country where did this happen?'
+            labelName='Where did this happen?'
             type='text'
             name='country'
             placeholder='Ex., Helsinki, Finland'
@@ -364,28 +362,39 @@ const CreatePost = () => {
             handleChange={handleChange}
           />
 
-          <div className='relative bg-[#fcfcfc] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center'>
-            {form.photo ? (
-              <img
-                src={form.photo}
-                alt={form.content}
-                className='w-full h-full object-contain'
-              />
-            ) : (
-              <img
-                src={preview}
-                alt='preview'
-                className='w-9/12 h-9/12 object-contain opacity-40'
-              />
-            )}
+          <FormField
+            labelName='Your first name?'
+            type='text'
+            name='name'
+            placeholder='Ex., Alex'
+            value={form.name}
+            handleChange={handleChange}
+          />
 
-            {generatingImg && (
-              <div className='absolute inset-0 z-0 flex border border-none justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg'>
-                <Loader />
-              </div>
-            )}
-          </div>
         </div>
+
+        <div className='relative bg-[#fcfcfc] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-56 p-3 h-56 xs:w-64 xs:h-64 flex justify-center items-center'>
+          {form.photo ? (
+            <img
+              src={form.photo}
+              alt={form.content}
+              className='w-full h-full object-contain'
+            />
+          ) : (
+            <img
+              src={preview}
+              alt='preview'
+              className='w-9/12 h-9/12 object-contain opacity-40'
+            />
+          )}
+
+          {generatingImg && (
+            <div className='absolute inset-0 z-0 flex border border-none justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg'>
+              <Loader />
+            </div>
+          )}
+        </div>
+
 
 
         <div className='mt-5'>
@@ -393,26 +402,44 @@ const CreatePost = () => {
             {generatedText}
           </p>
 
-          {(!form.photo || !generatedText) && (
+          {!form.photo || !generatedText ? (
             <button
               type='button'
               onClick={handleGenerate}
-              className=' text-white text-[16px] bg-[green] font-medium rounded-md w-full sm:w-auto px-5 py-2.5 text-center'
+              className='mt-3 mb-3 text-white bg-[green] hover:ease-in duration-300 hover:opacity-90 font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center '
             >
-              {generatingImg ? 'Generating...' : 'Generate'}
+              {generatingImg ?
+                <>
+                  Generating
+                  <span className="loader">.<span>.</span><span>.</span></span>
+                </>
+                :
+                'Generate'
+              }
             </button>
-          )}
+          ) : null}
 
         </div>
 
         <div className='mt-10'>
-          <p className='mt-2 text-[#666e75] text-[14px]'>** Once you have created the content you want, you can share it with others in the community **</p>
-          <button
-            type='submit'
-            className='mt-3 mb-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center'
-          >
-            {loading ? 'Sharing... with the Community' : 'Share with the Community'}
-          </button>
+          {form.photo && generatedText && (
+            <>
+              <p className='mt-2 text-[#666e75] text-[14px]'>** Once you have created the text and image you want, you can share it with others. **</p>
+              <button
+                type='submit'
+                className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-[16px] w-full sm:w-auto px-5 py-2.5 text-center hover:ease-in duration-300 hover:bg-[#AD57FF]'
+              >
+                {loading ?
+                  <>
+                    Sharing with the Community
+                    <span className="loader">.<span>.</span><span>.</span></span>
+                  </>
+                  :
+                  'Share with the Community'
+                }
+              </button>
+            </>
+          )}
         </div>
       </form>
     </section >

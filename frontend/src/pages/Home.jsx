@@ -1,6 +1,7 @@
 // Importing necessary packages and components
 import React, { useEffect, useState } from 'react';
 import { Card, FormField, Loader } from '../components';
+import { useMediaQuery } from 'react-responsive';
 
 // A function component that takes in data and title as props to render the cards or display a message
 const RenderCards = ({ data, title }) => {
@@ -31,6 +32,9 @@ const Home = () => {
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
 
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(max-device-width: 768px)'
+  });
 
   // Function to fetch posts from the server
   const fetchPosts = async () => {
@@ -128,9 +132,8 @@ const Home = () => {
     <section className='max-w-7xl sm:mx-6 lg:mx-10 mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#1B2828] text-[32px]'>The Community Showcase</h1>
-        <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>Discover sincere apologies from our community. These stories are meaningful and intimate, highlighting the significance of speaking up. We employ cutting-edge technology (ChatGTP + DALL-E + code) to ensure your voice remains anonymous, yet visible.
-          <br /><br />
-          If circumstances permit, we encourage you to offer your apologies directly to the person you have hurt. If you can't do that, may this platform provide solace as you navigate the path towards healing.</p>
+        <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>These are intimate apologies from our community, highlighting the significance of speaking up. With cutting-edge technology (ChatGTP + DALL-E + code) we ensure your voice remains anonymous, yet visible.</p>
+        <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>If you can no longer apologise directly to the person you have hurt, may this platform provide solace as you navigate the path towards healing.</p>
       </div>
 
       <div className='mt-8 pt-2'>
@@ -144,7 +147,6 @@ const Home = () => {
           handleChange={handleSearchChange}
         />
       </div>
-
       <div className='mt-10'>
         {/* Show a loader when loading */}
         {loading ? (
@@ -159,7 +161,14 @@ const Home = () => {
                 Showing Resuls for <span className='text-[#1B2828]'>{searchText}</span>:
               </h2>
             )}
-            <div className='mt-12 sm:mt-20 mx-2 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 xl:gap-20 lg:gap-14 md:gap-8 sm:gap-14 xs:gap-14 xs:mx-10 sm:mx-12 md:mx-0'>
+            <div className='mt-12 sm:mt-20 mx-0 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 xl:gap-20 lg:gap-14 md:gap-8 sm:gap-14 xs:gap-14 xs:mx-8 sm:mx-12 md:mx-0'>
+
+              {isTabletOrMobileDevice && (
+                <div className='grid grid-cols-1 gap-0 mx-0'>
+                  <h6 className='mt-0 text-[16px] grid grid-cols-1 pt-0 font-medium text-grey-900'>Click images to read apologies</h6>
+                </div>
+              )}
+
               {/* Render cards based on whether search text is present */}
               {
                 searchText ? (
