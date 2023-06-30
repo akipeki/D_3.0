@@ -29,8 +29,8 @@ const Card = ({ _id, name, photo, generatedText }) => {
         let newSize = 'text-sm';
         if (cardSize < 200) {
             newSize = 'text-xs';
-        } else if (cardSize < 340) {
-            newSize = 'text-xs';
+        } else if (cardSize < 380) {
+            newSize = 'text-sm';
         } else if (cardSize < 500) {
             newSize = 'text-md';
         } else {

@@ -7,6 +7,7 @@ const Contact = () => {
     const navigate = useNavigate();
     const [formStatus, setFormStatus] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isGenerated, setIsGenerated] = useState(false);
     const [userInput, setUserInput] = useState({
         user_name: '',
         user_email: '',
@@ -68,7 +69,7 @@ const Contact = () => {
 
             <p className="mt-5 text-[#666e75] text-md">
                 We always appreciate hearing from our users. Whether you have a question,
-                want to give feedback, or simply want to share your experience with our product,
+                want to give feedback, or simply want to share your experience with our website,
                 please feel free to drop us a line. We're here to listen and help.
             </p>
 
