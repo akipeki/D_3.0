@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { peki_SINIKOSKI } from '../assets';
 
 const About = () => {
     return (
@@ -15,12 +16,16 @@ const About = () => {
             </div>
 
             <div className='mt-8 pt-2'>
+
+
                 <h1 className='font-extrabold text-[#1B2828] text-[32px]'>About Peki</h1>
-                <h6 className='mt-4 text-[#666e75] font-bold text-[16px] max-w-[500px]'>Fullstack developer and digital storyteller</h6>
+                <h6 className='mt-4 text-[#666e75] font-bold text-[16px] max-w-[500px]'>Fullstack developer and storyteller</h6>
                 <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>Peki Sinikoski is an fullstack developer and digital storyteller, known for his unique fusion of art, design, and technology.</p>
+                <img className="pt-6 max-w-[220px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[500px] sm:px-0 md:px-0 " src={peki_SINIKOSKI} alt="Peki Sinikoski" />
+
                 <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>With over two decades of experience in photography, Peki's work has reached global acclaim, featured in exhibitions on four continents and being published in medias like The New Yorker, Vogue, The Guardian, Le Monde, and Stern.</p>
                 <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>As a professional, Peki balances authenticity with a deep interest in artificial intelligence, crafting digital narratives that resonate with audiences. His skills extend beyond visual narratives, proficient in creating intricate digital experiences that encapsulate the spirit of his stories.</p>
-                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>To further explore Peki's work and delve into his digital world, visit his LinkedIn page or wepage:
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>To further explore Peki's work and delve into his digital world, visit his <a href="https://www.linkedin.com/in/sinikoski/" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'> LinkedIn page</a> or wepage:
                     <a href="http://www.korea.fi" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'> www.korea.fi</a> He continues to invite new people into his journey, eager to share insights, experiences, and perspectives. 👋</p>
             </div>
         </section >

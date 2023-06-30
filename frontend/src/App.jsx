@@ -9,7 +9,7 @@ const App = () => {
     <BrowserRouter>
       <div className='innerWrapper'>
         <div className='innerWrapper flex flex-col justify-center px-4 sm:px-0'>
-          <header className='w-full flex border-none justify-between items-center bg-white px-1 sm:px-14 md:px-0 lg:px-0 xl:px-0 py-4 border-b border-b-[#e6ebf4]'>
+          <header className='w-full flex border-none justify-between items-center bg-white px-1 sm:px-14 md:px-14 lg:px-0 xl:px-0 py-4 border-b border-b-[#e6ebf4]'>
 
             <Link to='/'>
               <img src={LOGO_SORRY_OS} alt="logo" className="w-40 sm:w-60 md:w-80" />
