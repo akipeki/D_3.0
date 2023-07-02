@@ -25,7 +25,7 @@ const FAQ = () => {
                             </div>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
                                 <p className='mt-4'>
-                                    With over two decades of experience in photography, Peki's work has reached global acclaim, featured in exhibitions on four continents and leading media outlets like The New Yorker, Vogue, The Guardian, Le Monde, and Stern. As an author Sinikoski is published by Schildts & Söderströms.
+                                    With over two decades of experience in photography, Peki's work has reached global acclaim, featured in exhibitions on four continents and in medias like The New Yorker, Vogue, The Guardian, Le Monde, and Stern. As an author Sinikoski is published by Schildts & Söderströms.
                                 </p>
                                 <p className='mt-4'>
                                     As a professional, Peki balances authenticity with a deep interest in artificial intelligence, crafting digital narratives that resonate with audiences. His skills extend beyond visual narratives, proficient in creating intricate digital experiences that encapsulate the spirit of his stories.

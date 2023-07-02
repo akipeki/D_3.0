@@ -25,7 +25,7 @@ const About = () => {
 
                 <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>With over two decades of experience in photography, Peki's work has reached global acclaim, featured in exhibitions on four continents and being published in medias like The New Yorker, Vogue, The Guardian, Le Monde, and Stern.</p>
                 <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>As a professional, Peki balances authenticity with a deep interest in artificial intelligence, crafting digital narratives that resonate with audiences. His skills extend beyond visual narratives, proficient in creating intricate digital experiences that encapsulate the spirit of his stories.</p>
-                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>To further explore Peki's work and delve into his digital world, visit his <a href="https://www.linkedin.com/in/sinikoski/" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'> LinkedIn page</a> or wepage:
+                <p className='mt-4 text-[#666e75] text-[16px] max-w-[500px]'>To further explore Peki's work and delve into his digital world, visit his <a href="https://www.linkedin.com/in/sinikoski/" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'> LinkedIn</a> or webpage:
                     <a href="http://www.korea.fi" target='_blank' className='mt-4 text-[#6469ff] text-[16px] underline'> www.korea.fi</a> He continues to invite new people into his journey, eager to share insights, experiences, and perspectives. 👋</p>
             </div>
         </section >

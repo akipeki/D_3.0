@@ -27,9 +27,9 @@ const Card = ({ _id, name, photo, generatedText }) => {
 
     useEffect(() => {
         let newSize = 'text-sm';
-        if (cardSize < 200) {
+        if (cardSize < 350) {
             newSize = 'text-xs';
-        } else if (cardSize < 380) {
+        } else if (cardSize < 430) {
             newSize = 'text-sm';
         } else if (cardSize < 500) {
             newSize = 'text-md';
@@ -50,7 +50,7 @@ const Card = ({ _id, name, photo, generatedText }) => {
                 {!isTabletOrMobileDevice && (
                     <div className={`absolute top-0 left-0 right-0 bottom-0 flex-col items-center justify-center p-4 rounded-md hidden group-hover:flex bg-white opacity-70`}>
                         <div className='md:overflow-y-auto md:scrollbar-padding'>
-                            <p className={`text-black ${fontSize} overflow-y-auto prompt mt-4 mb-2 mx-4 text-center`}>{generatedText}</p>
+                            <p className={`text-black ${fontSize} overflow-y-auto prompt mt-4 mb-2 mx-4 text-left`}>{generatedText}</p>
                         </div>
                         <div className='mt-5 flex justify-between items-center gap-2 w-full'>
                         </div>

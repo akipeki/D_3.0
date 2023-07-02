@@ -9,7 +9,7 @@ export const surpriseMePrompts = [
   'Accidentally damaging you car and not taking responsibility',
   'Lying to you, and not being honest with you',
   'Not being a good father you deserved',
-  'Spreading rumors about you and hurting you with my words',
+  'Spreading rumours about you and hurting you with my words',
   'Not appreciating your efforts and taking you for granted',
   'Gossiping about you, damaging your reputation, and betraying your trust',
   'Being disrespectful to you, and not showing my love when you still lived',
