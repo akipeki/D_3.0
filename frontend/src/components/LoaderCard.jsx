@@ -3,7 +3,7 @@ import './LoaderCard.css';
 
 const LoaderCard = () => {
     return (
-        <div className="loader-card-container">
+        <div className="loader_card-container">
             <p className="loader_card">
                 .
             </p>
