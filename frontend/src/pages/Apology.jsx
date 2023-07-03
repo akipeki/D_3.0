@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useParams, Link } from 'react-router-dom';
-import { LoaderHomePage } from '../components';
+import { LoaderApologyPage } from '../components';
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon, WhatsappIcon } from "react-share";
 
@@ -36,7 +36,7 @@ const Apology = () => {
 
     // Loading State
     if (isLoading) {
-        return <div><LoaderHomePage /></div>;
+        return <div><LoaderApologyPage /></div>;
     }
 
     return (
