@@ -1,17 +1,15 @@
-.loader_home {
+.loader_apology {
     border: 7px solid #6469ff;
     border-top: 7px solid #f8f9fb;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    animation: spin 1s linear infinite;
+    animation: spin_apology 1s linear infinite;
     z-index: 200;
     color: #f8f9fb;
 }
 
-
-
-@keyframes spin {
+@keyframes spin_apology {
     0% {
         transform: rotate(0deg);
     }
@@ -21,25 +19,24 @@
     }
 }
 
-.loader-container {
+.loader_apology-container {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 100;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     background-color: #f8f9fb;
     z-index: 100;
 }
 
-.content-container {
+.apology_content-container {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
 
-.content-container.visible {
+.apology_content-container.visible {
     opacity: 1;
 }

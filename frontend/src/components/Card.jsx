@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import { downloadImage } from '../utils'
 import { Link } from 'react-router-dom';
 import LoaderHomePage from './LoaderHomePage';
 
@@ -29,7 +28,6 @@ const Card = ({ _id, name, photo, generatedText }) => {
         window.addEventListener('resize', updateCardSize);
         return () => window.removeEventListener('resize', updateCardSize);
     }, []);
-
     useEffect(() => {
         let newSize = 'text-sm';
         if (cardSize < 350) {
@@ -62,15 +60,19 @@ const Card = ({ _id, name, photo, generatedText }) => {
     return (
         <div ref={cardRef} className='card rounded-xl group relative shadow-card my-4 xs:my-0'>
             <Link to={`/apology/${_id}`}>
-                <img
-                    className='w-full h-auto object-cover rounded-xl'
-                    key={photo}
-                    src={photo}
-                    alt={generatedText}
-                    onLoad={() => setIsImageLoaded(true)}
-                    style={{ display: isImageLoaded ? 'block' : 'none' }}
-                />
-                {!isImageLoaded && <LoaderHomePage />}
+                {isImageLoaded ? (
+                    <img
+                        className='w-full h-auto object-cover rounded-xl'
+                        key={photo}
+                        src={photo}
+                        alt={generatedText}
+                        onLoad={() => setIsImageLoaded(true)}
+                    />
+                ) : (
+                    <div className='loader-container'>
+                        <LoaderHomePage />
+                    </div>
+                )}
                 {!isTabletOrMobileDevice && (
                     <div className={`absolute top-0 left-0 right-0 bottom-0 flex-col items-center justify-center p-4 rounded-md hidden group-hover:flex bg-white opacity-70`}>
                         <div className='md:overflow-y-auto md:scrollbar-padding'>
@@ -84,8 +86,6 @@ const Card = ({ _id, name, photo, generatedText }) => {
                             </div>
                             <p className='text-black text-sm'>{name}</p>
                         </div>
-                        <button type='button' onClick={() => downloadImage(_id, photo)} className='outline-none bg-transparent border-none'>
-                        </button>
                     </div>
                 )}
             </Link>

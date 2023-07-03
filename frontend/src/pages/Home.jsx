@@ -11,13 +11,11 @@ const RenderCards = ({ data, title }) => {
       data.map((post, index) => <Card index={index} key={post._id} {...post} />)
     );
   }
-
   // If no data is present, display a message
   return (
     <h2 className='mt-5 font-bold text-[#6469ff] text-xl uppercase'>{title}</h2>
   );
 };
-
 // The Home component that displays all posts and a search bar
 const Home = () => {
   // Use state to keep track of the loading status, all posts, search text and results, and the search timeout
@@ -28,19 +26,16 @@ const Home = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 14;
   const pageRangeDisplayed = 5;
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
-
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(max-device-width: 768px)'
   });
-
   // Function to fetch posts from the server
   const fetchPosts = async () => {
     setHomePageLoading(true);
-
     try {
       // Fetch data from the server
       const response = await fetch('https://dille.onrender.com/api/v1/post', {
@@ -49,13 +44,11 @@ const Home = () => {
           'Content-Type': 'application/json',
         },
       });
-
       // Check for server errors
       if (!response.ok) {
         const errData = await response.json();
         throw new Error(errData.message || `An error has occurred while fetching: ${response.status}`);
       }
-
       // Parse the response data and update allPosts state
       const result = await response.json();
       setAllPosts(result.data.reverse());
@@ -66,18 +59,15 @@ const Home = () => {
       setHomePageLoading(false);    // Set loading to false at the end of fetch
     }
   };
-
   // Fetch posts when the component mounts
   useEffect(() => {
     fetchPosts();
   }, [currentPage]);
-
   // Handler for search input change
-  const handleSearchChange = (e) => {
 
+  const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);  // Clear the previous timeout on each input change
     setSearchText(e.target.value);  // Update the search text state
-
     // Set a timeout to filter the posts after a delay
     setSearchTimeout(
       setTimeout(() => {
@@ -85,19 +75,15 @@ const Home = () => {
         setSearchedResults(searchResult);  // Update the search results state
       }, 500),
     );
-
   };
-
   const renderPageNumbers = (posts) => {
     if (!posts) return null;
-
     const pageCount = Math.ceil(posts.length / itemsPerPage);
     if (pageCount === 1) return null;
     const pageNumbers = [];
     for (let i = 1; i <= pageCount; i++) {
       pageNumbers.push(i);
     }
-
     const renderPageNumber = (number) => (
       <button
         key={number}
@@ -108,7 +94,6 @@ const Home = () => {
         {number}
       </button>
     );
-
     let items = [];
     items.push(renderPageNumber(1));
     if (currentPage > 2 + pageRangeDisplayed) {
@@ -125,10 +110,8 @@ const Home = () => {
     }
     return items;
   };
-
   // console.log(currentPage)
   // console.log(allPosts, searchedResults)
-
   // Render the Home component
   // Render the Home component
   return (
@@ -217,6 +200,4 @@ const Home = () => {
     </section>
   );
 }
-
-
 export default Home;

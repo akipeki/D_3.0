@@ -299,37 +299,6 @@ const FAQ = () => {
 
                     <Accordion.Panel>
                         <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
-                            Why I had problems to create my apology?
-                        </Accordion.Title>
-                        <Accordion.Content className='sm:mx-6 lg:mx-10 '>
-                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className="mt-6">
-                                    Rude language.
-                                </p>
-                            </div>
-                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p>
-                                    Check out this guide to learn how to
-                                </p>
-                                <a
-                                    className="text-[#6469ff] hover:underline dark:text-[#6469ff]"
-                                    href="https://flowbite.com/docs/getting-started/introduction/"
-                                >
-                                    <p>
-                                        get started
-                                    </p>
-                                </a>
-                                <p>
-                                    and start developing websites even faster with components on top of Tailwind CSS.
-                                </p>
-                            </div>
-                        </Accordion.Content>
-                    </Accordion.Panel>
-
-
-
-                    <Accordion.Panel>
-                        <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
                             Who is the copyright owner of the site's content?
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
