@@ -29,7 +29,7 @@
     top: 100;
     left: 0;
     width: 100%;
-    height: calc(100% - 100px);
+    height: 100%;
 
     background-color: #f8f9fb;
     z-index: 100;
