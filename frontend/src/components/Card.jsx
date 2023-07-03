@@ -2,16 +2,21 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { downloadImage } from '../utils'
 import { Link } from 'react-router-dom';
+import LoaderHomePage from './LoaderHomePage';
+
 
 const Card = ({ _id, name, photo, generatedText }) => {
     const cardRef = useRef();
     const [fontSize, setFontSize] = useState('text-sm');
     const [cardSize, setCardSize] = useState(null);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     // define the screen size you want to target
     const isTabletOrMobileDevice = useMediaQuery({
         query: '(max-device-width: 768px)'
     });
+
+
 
     useEffect(() => {
         function updateCardSize() {
@@ -39,14 +44,33 @@ const Card = ({ _id, name, photo, generatedText }) => {
         setFontSize(newSize);
     }, [cardSize]);
 
+    useEffect(() => {
+        const img = new Image();
+        img.src = photo;
+        img.onload = () => {
+            setIsImageLoaded(true);
+        };
+        img.onerror = () => {
+            setIsImageLoaded(false);
+        };
+        return () => {
+            img.onload = null;
+            img.onerror = null;
+        };
+    }, [photo]);
+
     return (
         <div ref={cardRef} className='card rounded-xl group relative shadow-card my-4 xs:my-0'>
             <Link to={`/apology/${_id}`}>
                 <img
                     className='w-full h-auto object-cover rounded-xl'
+                    key={photo}
                     src={photo}
                     alt={generatedText}
+                    onLoad={() => setIsImageLoaded(true)}
+                    style={{ display: isImageLoaded ? 'block' : 'none' }}
                 />
+                {!isImageLoaded && <LoaderHomePage />}
                 {!isTabletOrMobileDevice && (
                     <div className={`absolute top-0 left-0 right-0 bottom-0 flex-col items-center justify-center p-4 rounded-md hidden group-hover:flex bg-white opacity-70`}>
                         <div className='md:overflow-y-auto md:scrollbar-padding'>
