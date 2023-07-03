@@ -63,7 +63,7 @@ const Apology = () => {
                         <TwitterShareButton
                             url={shareUrl}
                             title={title}
-                            hashtag={"#iamsorry"}
+                            hashtag={"iamsorry"}
                             className="saturate-0 hover:saturate-100" >
                             <TwitterIcon size={28} round={true} />
                         </TwitterShareButton>
