@@ -19,12 +19,23 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
+// I want to store original images as bigger size for future usage,
+// but on my website I want to use them as lighter version, for
+// faster dowload time, that is why w_500, f_auto
+const transformCloudinaryUrl = (url) => {
+  return `${url.split('.jpg')[0]}/w_500,f_auto.jpg`;
+}
+
 // Route handler to GET all posts
 // Sorts the fetched posts by their creation time in descending order
 router.route('/').get(async (req, res) => {
   try {
     const posts = await Post.find({});
-    res.status(200).json({ success: true, data: posts })
+    const transformedPosts = posts.map(post => {
+      post.photo = transformCloudinaryUrl(post.photo);
+      return post;
+    });
+    res.status(200).json({ success: true, data: transformedPosts });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Fetching posts failed, please try again' });
   }
@@ -40,6 +51,7 @@ router.route('/:id').get(async (req, res) => {
       return res.status(404).json({ success: false, message: 'Post not found' });
     }
 
+    post.photo = transformCloudinaryUrl(post.photo);
     res.status(200).json({ success: true, data: post });
   } catch (error) {
     console.error(error);
