@@ -86,7 +86,7 @@ const FAQ = () => {
 
                     <Accordion.Panel>
                         <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
-                            Can you share some insight into the various technologies and tools that have been leveraged to construct this website?
+                            What technologies were used to build this website?
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
