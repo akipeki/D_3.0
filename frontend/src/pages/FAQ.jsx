@@ -179,7 +179,7 @@ const FAQ = () => {
                                     href="https://www.linkedin.com/in/sinikoski/"
                                 >
                                     <p>
-                                        Check out Peki's <b>LinkedIn</b>
+                                        Check out <b>Peki's LinkedIn</b>
                                     </p>
                                 </a>
                                 <p className='mt-4 mb-6'>
