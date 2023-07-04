@@ -91,9 +91,83 @@ const FAQ = () => {
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
                                 <p className="mt-6">
-                                    Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons,
-                                    dropdowns, modals, navbars, and more.
+                                    I'M SORRY website has been meticulously constructed using a variety of modern web development technologies,
+                                    tools, and methodologies. Here's a quick rundown:
                                 </p>
+
+                                <p className="mt-6">
+                                    <b>Javascript ES6</b>: This updated version of JavaScript, with its additional features and syntactical improvements,
+                                    is at the core of our website's dynamic functionality.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>CSS, Tailwind, Flexbox, and Grid</b>: Our website's aesthetic appeal and user-friendly layout owe much to these.
+                                    CSS is our primary styling language, while Tailwind, a utility-first CSS framework, aids in efficient and responsive design.
+                                    Flexbox and Grid, both CSS layout models, are utilized for creating complex, flexible layouts with ease.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>React and JSX</b>: React, a JavaScript library, powers our user interface. JSX, a syntax extension for JavaScript,
+                                    allows us to write HTML in React, thus making the code easier to understand and debug.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>MongoDB</b>: This NoSQL database is used for storing our website data in a flexible, JSON-like format,
+                                    which helps in the faster processing and retrieval of data.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>APIs and Postman</b>: We've integrated various APIs to enable interaction between different software intermediaries,
+                                    thus ensuring a smoother, more interconnected user experience. Postman plays a crucial role in this process, providing
+                                    a platform for developing and testing these APIs, thereby ensuring they function as intended.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>GitHub</b>: Our version control needs are catered to by GitHub, which aids in tracking changes in our
+                                    code during software development.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>Cloudinary</b>: This cloud service provides a solution for seamless and efficient image and video management,
+                                    optimizing media files for the best user experience.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>Render.com and Netlify.com</b>: These platforms provide modern, managed hosting for our website.
+                                    They enable continuous deployment, automatic SSL, and other advanced features to ensure our website
+                                    runs smoothly and securely.
+                                </p>
+
+                                <p className="mt-6">
+                                    <b>OpenAI's ChatGPT and DALL-E</b>: We've incorporated these AI technologies to provide interactive and personalized experiences.
+                                    ChatGPT handles text-based queries with ease, while DALL-E generates unique images from descriptions, significantly enhancing
+                                    the visual content of our site.
+                                </p>
+                                <p className="mt-6">
+                                    <b>OpenAI's ChatGPT and DALL-E</b>: We've incorporated these AI technologies to provide interactive and personalized experiences.
+                                    ChatGPT handles text-based queries with ease, while DALL-E generates unique images from descriptions, significantly enhancing
+                                    the visual content of our site.
+                                </p>
+                                <p className="mt-6">
+                                    This website is the result of <b>Peki Sinikoski</b>'s multifaceted skill set, combining technical expertise in coding with a keen eye for design.
+                                    Peki not only wrote all of the code but also crafted the concept from the ground up. His tools of choice included <b>Adobe softwares</b> and <b>Figma</b>
+                                    for design, and he's applied his understanding of various web technologies to create an engaging user experience.
+                                </p>
+                                <p className="mt-6">
+                                    Peki's comprehensive understanding of different disciplines, from concept creation to design, coding, creative writing, and photography, played a crucial
+                                    role in bringing this project to life. His deep involvement in all aspects of the project resulted in a website that is not just visually
+                                    appealing but also functional and secure.
+                                </p>
+                                <p className="mt-6">
+                                    The website is a reflection of Peki's ability to effectively apply modern web development techniques and creative design principles.
+                                    His dedication to understanding and addressing the intricacies of the project led to the creation of this platform, which blends
+                                    engaging visuals with interactive experiences.
+                                </p>
+                                <p className="mt-6">
+                                    We invite you to explore and enjoy the results of this effort. This website represents not just a technical achievement,
+                                    but also a celebration of the possibilities when technology and creativity are in harmony. We hope you'll find it as appealing as we do.
+                                </p>
+
                             </div>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
                                 <p>
