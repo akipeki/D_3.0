@@ -31,11 +31,11 @@ const Card = ({ _id, name, photo, generatedText }) => {
     useEffect(() => {
         let newSize = 'text-sm';
         if (cardSize < 350) {
-            newSize = 'text-xs';
-        } else if (cardSize < 430) {
             newSize = 'text-sm';
-        } else if (cardSize < 500) {
+        } else if (cardSize < 430) {
             newSize = 'text-md';
+        } else if (cardSize < 500) {
+            newSize = 'text-lg';
         } else {
             newSize = 'text-lg';
         }
