@@ -23,7 +23,12 @@ cloudinary.config({
 // but on my website I want to use them as lighter version, for
 // faster dowload time, that is why w_500, f_auto
 const transformCloudinaryUrl = (url) => {
-  return `${url.split('.jpg')[0]}/w_500,f_auto.jpg`;
+  let urlParts = url.split('/');
+  let fileName = urlParts.pop();
+  fileName = fileName.replace('.png', '');
+  urlParts.push('w_500,f_auto');
+  urlParts.push(fileName + '.png');
+  return urlParts.join('/');
 }
 
 // Route handler to GET all posts
