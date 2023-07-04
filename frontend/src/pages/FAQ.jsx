@@ -171,11 +171,11 @@ const FAQ = () => {
                             </div>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
                                 <p>
-                                    Check out this guide to learn how to
+                                    Check out Peki's <b>LinkedIn</b>
                                 </p>
                                 <a
                                     className="text-[#6469ff] hover:underline dark:text-[#6469ff]"
-                                    href="https://flowbite.com/docs/getting-started/introduction/"
+                                    href="https://www.linkedin.com/in/sinikoski/"
                                 >
                                     <p>
                                         get started
