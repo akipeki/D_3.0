@@ -81,10 +81,10 @@ const Card = ({ _id, name, photo, generatedText }) => {
                         <div className='mt-5 flex justify-between items-center gap-2 w-full'>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <div className='w-7 h-7 rounded-full object-cover bg-[green] flex justify-center items-center text-white text-xs font-bold'>
+                            <div className='w-7 h-7 rounded-full object-cover bg-[green] flex justify-center items-center text-white text-sm font-bold'>
                                 {name[0]}
                             </div>
-                            <p className='text-black text-sm'>{name}</p>
+                            <p className='text-black font-medium text-md'>{name}</p>
                         </div>
                     </div>
                 )}
