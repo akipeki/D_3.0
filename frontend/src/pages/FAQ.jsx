@@ -91,7 +91,7 @@ const FAQ = () => {
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
                                 <p className="mt-6">
-                                    I'M SORRY website has been meticulously constructed using a variety of modern web development technologies,
+                                    <b>I'M SORRY</b> website has been meticulously constructed using a variety of modern web development technologies,
                                     tools, and methodologies. Here's a quick rundown:
                                 </p>
 
