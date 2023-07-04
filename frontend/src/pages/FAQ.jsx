@@ -171,14 +171,14 @@ const FAQ = () => {
                             </div>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
                                 <p>
-                                    Check out Peki's <b>LinkedIn</b>
+                                    If you want to learn more:
                                 </p>
                                 <a
                                     className="text-[#6469ff] hover:underline dark:text-[#6469ff]"
                                     href="https://www.linkedin.com/in/sinikoski/"
                                 >
                                     <p>
-                                        get started
+                                        Check out Peki's <b>LinkedIn</b> ✌️
                                     </p>
                                 </a>
                                 <p className='mt-4 mb-6'>
