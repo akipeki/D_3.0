@@ -65,17 +65,35 @@ const Home = () => {
   }, [currentPage]);
   // Handler for search input change
 
+  useEffect(() => {
+    if (searchText !== '') {
+      const searchResult = allPosts.filter((item) =>
+        item.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        item.generatedText.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setSearchedResults(searchResult);
+    }
+  }, [allPosts, searchText, currentPage]);
+
+
+
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);  // Clear the previous timeout on each input change
     setSearchText(e.target.value);  // Update the search text state
+    setCurrentPage(1);  // Reset the page to the first page
+
     // Set a timeout to filter the posts after a delay
     setSearchTimeout(
       setTimeout(() => {
-        const searchResult = allPosts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()) || item.generatedText.toLowerCase().includes(searchText.toLowerCase()));
+        const searchResult = allPosts.filter((item) =>
+          item.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          item.generatedText.toLowerCase().includes(e.target.value.toLowerCase())
+        );
         setSearchedResults(searchResult);  // Update the search results state
       }, 500),
     );
   };
+
   const renderPageNumbers = (posts) => {
     if (!posts) return null;
     const pageCount = Math.ceil(posts.length / itemsPerPage);
