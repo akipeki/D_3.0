@@ -28,7 +28,8 @@ const FAQ = () => {
                                     With over two decades of experience in photography, Peki's work has reached global acclaim, featured in exhibitions on four continents and in medias like The New Yorker, Vogue, The Guardian, Le Monde, and Stern. As an author Sinikoski is published by Schildts & Söderströms.
                                 </p>
                                 <p className='mt-4'>
-                                    As a professional, Peki balances authenticity with a deep interest in artificial intelligence, crafting digital narratives that resonate with audiences. His skills extend beyond visual narratives, proficient in creating intricate digital experiences that encapsulate the spirit of his stories.
+                                    As a professional, Peki expertly combines authenticity with a fascination for artificial intelligence, crafting digital narratives that resonate with audiences.
+                                    He's not just about visuals or coding either; he's great at building rich digital experiences that really capture the heart of the stories.
                                 </p>
                                 <p className='mt-4'>
                                     To further explore Peki's work and delve into his digital world, visit his LinkedIn page:
@@ -48,10 +49,9 @@ const FAQ = () => {
                         </Accordion.Content>
                     </Accordion.Panel>
 
-
                     <Accordion.Panel>
                         <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
-                            Why is this Website is created?
+                            Why is this website created?
                         </Accordion.Title>
                         <Accordion.Content className='sm:mx-6 lg:mx-10 '>
                             <div className="className='mt-4 text-[#1B2828] text-[16px]">
@@ -83,7 +83,6 @@ const FAQ = () => {
                         </Accordion.Content>
                     </Accordion.Panel>
 
-
                     <Accordion.Panel>
                         <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
                             What technologies were used to build this website?
@@ -97,7 +96,7 @@ const FAQ = () => {
 
                                 <p className="mt-6">
                                     <b>Javascript ES6</b>: This updated version of JavaScript, with its additional features and syntactical improvements,
-                                    is at the core of our website's dynamic functionality.
+                                    is at the core of the website's dynamic functionality.
                                 </p>
 
                                 <p className="mt-6">
@@ -143,11 +142,7 @@ const FAQ = () => {
                                     ChatGPT handles text-based queries with ease, while DALL-E generates unique images from descriptions, significantly enhancing
                                     the visual content of our site.
                                 </p>
-                                <p className="mt-6">
-                                    <b>OpenAI's ChatGPT and DALL-E</b>: We've incorporated these AI technologies to provide interactive and personalized experiences.
-                                    ChatGPT handles text-based queries with ease, while DALL-E generates unique images from descriptions, significantly enhancing
-                                    the visual content of our site.
-                                </p>
+
                                 <p className="mt-6">
                                     This website is the result of <b>Peki Sinikoski</b>'s multifaceted skill set, combining technical expertise in coding with a keen eye for design.
                                     Peki not only wrote all of the code but also crafted the concept from the ground up. His tools of choice included <b>Adobe softwares</b> and <b>Figma</b>
@@ -175,7 +170,7 @@ const FAQ = () => {
                                 </p>
 
                                 <a
-                                    className="text-[#6469ff] hover:underline dark:text-[#6469ff]"
+                                    className="text-[#6469ff] hover:underline dark:text-[#6469ff]" target='_blank'
                                     href="https://www.linkedin.com/in/sinikoski/"
                                 >
                                     <p>
@@ -190,6 +185,120 @@ const FAQ = () => {
                     </Accordion.Panel>
 
 
+                    <Accordion.Panel>
+                        <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
+                            Peki, I think you can make better photos without AI!
+                        </Accordion.Title>
+                        <Accordion.Content className='sm:mx-6 lg:mx-10 '>
+                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
+
+                                <p className="mt-6">
+                                    That's not exactly a question, is it? 😉 But it's a great chance to talk about this cool topic! 👍
+                                    Yes, I have spent 20 years taking photos, creating visual styles, and working on brands and communication. So, with all that practice,
+                                    I can probably make very good photos without any AI help. But, this project is not just about taking top-notch photos.
+                                    It's about something else, something special.
+                                </p>
+
+                                <p className="mt-6">
+                                    You see, we are doing something new with AI that we can't do with traditional photography. We're making portraits that let people connect deeply,
+                                    looking right into each other's eyes. And the best part? Everyone can stay anonymous. That's really hard to do with old-school photos.
+                                </p>
+
+                                <p className="mt-6">
+                                    So, when I think about AI and non-AI things, it's not about picking one over the other. It's like asking me to choose between oranges and bananas,
+                                    gym or running, summer or winter, computers or nature. Why not have both?
+                                </p>
+
+                                <p className="mt-6">
+                                    That's why I do many different things. I'm a Fullstack Web Developer, a photographer, a published writer, and also a dad,
+                                    a husband, a son, a friend, and more.
+                                </p>
+
+                                <p className="mt-6">
+                                    And hey, if you're still not sure about this AI stuff, that's totally fine. No worries at all 😊❤️✌️. You can always check out my other photos at
+                                    <a
+                                        className="text-[#6469ff] hover:underline dark:text-[#6469ff]" target='_blank'
+                                        href="https://www.sinikoski.com"
+                                    >
+                                        <p>
+                                            www.sinikoski.com
+                                        </p>
+                                    </a>
+                                </p>
+
+                                <p className="mt-6">
+                                    (P.S. I'm working on a new website, so stay tuned!)
+                                </p>
+
+
+                            </div>
+                        </Accordion.Content>
+                    </Accordion.Panel>
+
+                    <Accordion.Panel>
+                        <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
+                            In more philosophical level? Can you actually create photographs with AI?
+                        </Accordion.Title>
+                        <Accordion.Content className='sm:mx-6 lg:mx-10 '>
+                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
+                                <p className="mt-6">
+                                    Wow, what an interesting question! Let's consider a different perspective.
+                                    Traditional photography involves a camera, where light is captured on film to produce an image of the real world.
+                                    Or, to be more precise, a framed slice of reality that often reveals as much about the photographer as it does
+                                    about the subject or reality itself. But here's the twist: AI creating photographs
+                                    is a different ball game. It needs us, humans, to provide it with data or information.
+                                    Then, using this data, AI generates images in an equally fascinating process.
+                                </p>
+                            </div>
+                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
+                                <p className='mt-4'>
+                                    Though photographs aren't a direct representation of reality, they often act as visual narratives that mirror it.
+                                    Interestingly, AI-generated images, while not anchored to a specific moment, can also reflect reality,
+                                    wouldn't you agree? We, as viewers, creators, curators, and AI developers, add a touch of our human experiences
+                                    to them. It's we humans who breathe life and meaning into these AI-generated pictures. On this platform,
+                                    they also capture the real stories, emotions, and apologies from people like you and me.
+                                </p>
+
+                                <p className='mt-4 mb-6'>
+                                    From its inception in 1839, photography has undergone a tremendous transformation – from light-reactive glass plates, to film, to digital,
+                                    and now to AI-rendered images. Yet, in spite of these advancements, our arsenal of tools continues to respect the old-school techniques.
+                                    The real enchantment stems from our imaginative creativity, both as creators and spectators.
+                                    Traditional or AI-created photos, or any other kind of images, in their raw form, are but inanimate materials, lacking inherent life, soul,
+                                    or any genuine bond with the world beyond. The true connection ignites in the observer's mind; it's through our imaginative capacity that
+                                    these images acquire vitality and interconnection. Fascinating, don't you think? 😊
+                                </p>
+
+
+                            </div>
+                        </Accordion.Content>
+                    </Accordion.Panel>
+
+                    <Accordion.Panel>
+                        <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
+                            Peki, I can make better AI photos!
+                        </Accordion.Title>
+                        <Accordion.Content className='sm:mx-6 lg:mx-10 '>
+                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
+                                <p className="mt-6">
+                                    Well, this is not either a real question, but I'm glad you brought it up, because it opens
+                                    the door to an exciting chat! And first off, high five to you for your AI skills! 🖐️
+                                </p>
+                                <p className='mt-4 mb-6'>
+                                    Did you know that many of the top AI image tools haven't yet made their service available as an API?
+                                    If you're not sure what an API is, think of it like a bridge between different bits of software.
+                                    If your AI image tool doesn't have this bridge, or API, you can't use it for photo projects like this website.
+                                    That's why I used DALL-E to create these images. Since you're up-to-date with AI, you might know that DALL-E isn't
+                                    really the best tool for making photos. But it's currently the top choice that works with APIs (note: this is as of 4th July 2023).
+                                </p>
+                                <p className='mt-4 mb-6'>
+                                    To me, this project isn't about having the most breathtaking image quality.
+                                    It's about something else, something that I can't achieve without AI.
+                                    But, here's a little spoiler: I'll soon launch another web project where the images aren't made in real-time.
+                                    Maybe you'll spot some pretty impressive photos on that one. Wink, wink. 😉
+                                </p>
+                            </div>
+                        </Accordion.Content>
+                    </Accordion.Panel>
 
 
                     <Accordion.Panel>
@@ -334,43 +443,7 @@ const FAQ = () => {
                         </Accordion.Content>
                     </Accordion.Panel>
 
-                    <Accordion.Panel>
-                        <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
-                            In more philosophical level? Can you actually create photographs with AI?
-                        </Accordion.Title>
-                        <Accordion.Content className='sm:mx-6 lg:mx-10 '>
-                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className="mt-6">
-                                    Wow, what an interesting question! Let's consider a different perspective.
-                                    Traditional photography involves a camera, where light is captured on film to produce an image of the real world.
-                                    Or, to be more precise, a framed slice of reality that often reveals as much about the photographer as it does
-                                    about the subject or reality itself. But here's the twist: AI creating photographs
-                                    is a different ball game. It needs us, humans, to provide it with data or information.
-                                    Then, using this data, AI generates images in an equally fascinating process.
-                                </p>
-                            </div>
-                            <div className="className='mt-4 text-[#1B2828] text-[16px]">
-                                <p className='mt-4'>
-                                    Though photographs aren't a direct representation of reality, they often act as visual narratives that mirror it.
-                                    Interestingly, AI-generated images, while not anchored to a specific moment, can also reflect reality,
-                                    wouldn't you agree? We, as viewers, creators, curators, and AI developers, add a touch of our human experiences
-                                    to them. It's we humans who breathe life and meaning into these AI-generated pictures. On this platform,
-                                    they also capture the real stories, emotions, and apologies from people like you and me.
-                                </p>
 
-                                <p className='mt-4 mb-6'>
-                                    From its inception in 1839, photography has undergone a tremendous transformation – from light-reactive glass plates, to film, to digital,
-                                    and now to AI-rendered images. Yet, in spite of these advancements, our arsenal of tools continues to respect the old-school techniques.
-                                    The real enchantment stems from our imaginative creativity, both as creators and spectators.
-                                    Traditional or AI-created photos, or any other kind of images, in their raw form, are but inanimate materials, lacking inherent life, soul,
-                                    or any genuine bond with the world beyond. The true connection ignites in the observer's mind; it's through our imaginative capacity that
-                                    these images acquire vitality and interconnection. Fascinating, don't you think? 😊
-                                </p>
-
-
-                            </div>
-                        </Accordion.Content>
-                    </Accordion.Panel>
 
                     <Accordion.Panel>
                         <Accordion.Title className='font-extrabold text-[#1B2828] text-[16px]'>
