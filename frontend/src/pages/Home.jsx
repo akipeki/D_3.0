@@ -185,7 +185,7 @@ const Home = () => {
                 ) : (
                   <RenderCards
                     data={allPosts?.slice(indexOfFirstPost, indexOfLastPost) ?? []}
-                    title='No Posts Yet'
+                    title='Loading...'
                   />
                 )
               }
