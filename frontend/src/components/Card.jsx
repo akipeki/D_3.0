@@ -58,8 +58,10 @@ const Card = ({ _id, name, photo, generatedText }) => {
     }, [photo]);
 
     return (
-        <div ref={cardRef} className='card rounded-xl group relative shadow-card my-4 xs:my-0'>
-            <Link to={`/apology/${_id}`}>
+        <div
+            ref={cardRef}
+            className='card rounded-xl group relative shadow-card my-4 xs:my-0'>
+            <Link to={`/apology/${_id}`} style={{ cursor: 'pointer' }}>
                 {isImageLoaded ? (
                     <img
                         className='w-full h-auto object-cover rounded-xl'

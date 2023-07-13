@@ -167,7 +167,7 @@ const Home = () => {
                 Showing Results for <span className='text-[#1B2828]'>{searchText}</span>:
               </h2>
             )}
-            <div className='mt-12 sm:mt-20 mx-0 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 xl:gap-20 lg:gap-14 md:gap-8 sm:gap-14 xs:gap-14 xs:mx-8 sm:mx-12 md:mx-0'>
+            <div className='cursor-pointer mt-12 sm:mt-20 mx-0 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 grid-cols-1 xl:gap-20 lg:gap-14 md:gap-8 sm:gap-14 xs:gap-14 xs:mx-8 sm:mx-12 md:mx-0'>
 
               {isTabletOrMobileDevice && (
                 <div className='grid grid-cols-1 gap-0 mx-0'>

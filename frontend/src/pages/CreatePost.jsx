@@ -72,15 +72,11 @@ const CreatePost = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: `As a ${tone} ${relationship}, your task is to create a ${tone} apology within 3 or 4 sentences.
-            Your language should be straightforward and understandable.
-            Your apology should express deep regret and a plea for forgiveness.
-            Base your apology on this statement: [ ${prompt} ].
-            You're addressing an individual who is ${age} years old and of ${gender},
-            and you're their ${relationship}. Please do not include any personal names or greetings/closings.
-            The aim should be solely to offer a sincere apology.
-            Before giving your answer, analyze the ${prompt}, ${tone}, and ${relationship} 
-            to consider the seriousness of the issue and adjust your tone and language accordingly.
+            prompt: `As a ${tone} ${relationship}, your task is to create a ${tone} apology within 2–3 sentences.
+            Be clear and direct. Your words should convey ${tone} regret and seek forgiveness. Craft your apology based on the following situation: [ ${prompt} ].
+            You're addressing an individual who is ${age} years old ${gender}, and you write this apology
+            as their ${relationship}.  Refrain from using personal names or greetings/closings. 
+             Before formulating your response is, consider the seriousness of the issue: ${prompt}. Adjust your tone and language accordingly.
             Do not say, that you are taking full responsibility because sometimes you can't do that.
             If you notice the text is written in any language other than English, translate it to English.`,
           }),
